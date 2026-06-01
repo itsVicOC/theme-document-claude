@@ -1,0 +1,154 @@
+# Document — claude.com 风格改造版
+
+😁 作为一个程序员，在日常的工作、生活、学习的过程中基本都有很多需要做笔记的地方；做笔记的主要目的之一是为了"温故而知新"，另一个则是为了在下一次遇到的时候，不需要再次耗费精力去找解决方法。
+
+本版本基于 [friend-nicen/theme-document](https://github.com/friend-nicen/theme-document) 进行**纯视觉层面**的 claude.com 风格改造（配色 + 排版 + 关键组件），不改功能、不改模板。原始主题的能力完全保留。
+
+原作者 demo：[https://nicen.cn](https://nicen.cn/)
+
+> 本仓库为个人 fork。如需原版完整功能说明与历史记录，请访问上方原作者仓库链接。
+
+---
+
+# 2026-06-02 — claude.com 风格视觉重塑
+
+> 本次重构以 [claude.com/blog](https://claude.com/blog) 为视觉参考，对配色、排版、关键组件做全面暖色调改造。仅改样式，不动功能与模板。
+
+## 配色
+
+| 维度 | 改前 | 改后 |
+|---|---|---|
+| 页面背景 | `#f5f7fd` 冷白 | `#FAF9F5` 暖白 |
+| 主文字 | `#333` 冷灰 | `#1F1E1B` 暖深棕 |
+| 强调色 | `#3eaf7c` Ant 绿 | `#C75F2C` 赤陶橙 |
+| 暗色背景 | `#333` 冷灰 | `#1A1815` 暖深底 |
+| 暗色文字 | `white` | `rgba(245,242,234,.92)` 暖白 |
+| 边框 | `#e1e1e1` 中性灰 | `#E8E5DD` 暖灰 |
+| 阴影 | `rgba(0,0,0,.22)` 冷黑 | `rgba(31,30,27,.06)` 暖低饱和 |
+| 顶栏背景 | `#fff` 实色 | `rgba(250,249,245,.85)` 磨砂半透明 |
+| 全局行高 | `1.75` 偏松 | `1.6` 克制（`pre`/`code` 局部覆盖回 `1.7`） |
+| 按钮圆角 | 未统一 | `8px` |
+| 卡片圆角 | 未统一 | `12px` |
+
+## 改动文件
+
+- `assets/extra/variant.scss` — 全量重写 `:root` 默认 token，去除 8 套主题色变体（`.theme-one` ~ `.theme-eight`），只保留一套暖色默认
+- `assets/extra/dark.scss` — 暗色 token 改写，暖深底 + 暖白文字
+- `assets/extra/common.scss` —
+    - 引入 `--theme-font-sans` / `--theme-font-mono` 字体栈（落到 Inter / 系统无衬线 / 思源宋体后备；Tiempos/Sohne 不可公网访问时自动降级）
+    - 全局 `line-height` 改为 `1.6`
+    - `pre *` 颜色 `var(--theme-pre)` 替代硬编码 `#65a4e3`
+    - `.tooltip` 颜色统一用 token
+    - 新增全局 `a` 链接过渡（`var(--theme-transition)` + `--theme-color-20` 下划线）
+    - 新增 `@media (prefers-reduced-motion: reduce)` 无障碍支持
+- `assets/extra/normal.scss` —
+    - 替换 14 处硬编码颜色（`#cfd4db` / `#e1e1e1` / `#2C3E50FF` / `rgb(117,117,117)`）为 token
+    - 末尾追加 90 行组件微调覆盖：`.main-header` 磨砂、按钮 hover 抬升、`.i-article` 卡片化、`pre` 圆角、输入框聚焦主色光晕、标题字重与字距
+- `assets/extra/w-1024.scss` / `w-480.scss` — 替换 2 处响应式硬编码 `rgba()`
+- `include/config.php` — 更新后台主题色 / 背景色 / 头部色等默认值
+- `include/themes/load.php` — 新增 `nicen_theme_claude_color_overrides()` 钩到 `wp_enqueue_scripts` priority 0，**在原主题的 inline `.personal{}` 注入之前修改 `$desination_configs`**，强制使用新色，绕过数据库中残留的旧色值
+- `template/index/fixed.php` — 删除右侧"主题色切换"按钮（及其 9 个色块 ul/li），保留"回到顶部"和"阅读进度"
+- `common/main.js` — 删除 `$('.theme-color div').click(...)` 点击处理函数（18 行）
+- `common/inline/main.js` — 删除 `localStorage.getItem('theme-color')` 死代码（5 行）
+
+## 字体策略
+
+Tiempos / Sohne 是 Anthropic 内部商业字体，公网不可用。落到以下回退栈：
+
+```css
+--theme-font-sans: "Inter", "Sohne", -apple-system, BlinkMacSystemFont,
+                   "PingFang SC", "Microsoft YaHei", "Source Han Serif SC",
+                   "Segoe UI", system-ui, sans-serif;
+--theme-font-mono: "JetBrains Mono", "Fira Code", "Source Code Pro", Menlo,
+                   Monaco, Consolas, "Courier New", monospace;
+```
+
+用户机器若装有 Sohne / Inter 则自动优先；否则回退到系统中性无衬线 + 思源宋体后备。
+
+## 已知妥协
+
+1. **原 8 套主题色变体已移除** — 若以后想重新启用，需在 `variant.scss` 末尾追加 `.theme-one` ~ `.theme-eight` 块，并在 `fixed.php` 还原按钮。
+2. **个别组件的极个别 1px 细节色**（如 ICP 徽章）保留为独立 token，未做硬性统一。
+3. **小屏 / 平板断点文件**只清理了硬编码颜色，未做视觉重设计。
+
+## 升级注意
+
+- 升级前请先在 WP 后台 → 外观 → 主题里**删除旧版 theme-document**，再上传新 zip。
+- 若浏览器仍显示旧色，强刷一次（Ctrl+Shift+R）清掉 `style.css` 的 `filemtime` 版本缓存。
+- 旧版用户 localStorage 中残留的 `theme-color` 值（来自已删除的 8 套配色）会作为空 class 写入 `<html>`，CSS 已无对应规则，**无视觉影响**，但若想清干净可在浏览器控制台执行 `localStorage.removeItem('theme-color')`。
+
+---
+
+# 安装之前
+
+通过重新安装空白的 wordpress 使用本主题进行测试，按照如下步骤安装后，未发现问题。
+显示的页面与原作者 [nicen.cn](https://nicen.cn) 别无二致，如您发现任何问题，欢迎反馈。
+
+# 安装主题
+
+直接将整个 GitHub 仓库下载，然后上传到 wordpress 的 `/wp-content/themes` 目录，然后在后台启用主题即可。启用后通过后台左侧菜单【主题选项】进行相关配置。
+
+安装完了跟 [nicen.cn](https://nicen.cn/) 是不一样的，因为本 fork 用了 claude.com 风格的暖色调配色，你不需要做任何额外配置即可生效。
+
+## 关于主题
+
+原版大部分代码都有注释，作为学习 wordpress 主题开发的模板很合适。本 fork 仅在样式层做了改动，未触及 PHP / JS 业务逻辑。
+
+## 使用须知
+
+主题默认启用经典文章编辑器、经典小部件编辑器，同时对经典文章编辑器进行了增强。
+
+主题对 JS、CSS 全局进行了压缩，同时在主题内提供了未压缩的源文件（`.scss` / `.js` 源文件）。
+
+---
+
+# 安装之后
+
+## 1.关于文章目录
+
+文章目录由后端生成，默认读取【h1】、【h2】、【h3】元标签（编辑器内的小插件可直接插入）。主题已对经典编辑器进行插件增强，请自行体验哈。
+
+## 2.主题后台修改基本信息
+
+主题后台提供了超强的自定义功能，你可以通过自定义做出自己真正喜欢的主题。
+
+## 3.新增页面模板
+
+主题具有 文章聚合、留言 两个文章模板，在后台添加页面时选择对应模板发布后，可将导航栏内的文章聚合、留言页面链接修改为你创建的链接。
+
+1. 新建页面
+2. 选择留言板或者文字聚合模板
+3. 发布
+4. 复制链接
+5. 修改主题选项为这俩页面
+
+## 4.顶部菜单
+
+1. 新建菜单
+2. 添加菜单项
+3. 发布到顶部菜单
+
+主题采集支持无限级的菜单，下级菜单会自动作为下拉菜单出现。
+
+## 5.小部件、侧边栏
+
+主题具有文章信息、作者信息、最新文章、最近更新 四个小部件（小部件自带配置，可在添加的时候填写），添加后默认在文章页面的右侧边栏显示。
+
+1. 关闭之前主题自带的小工具
+2. 拖入 document 主题的小部件
+3. 保存修改
+4. 不保存的话，会显示之前主题的小部件导致样式错乱
+
+## 6.邮箱 SMTP 配置
+
+wordpress 自带的邮件发送服务不太友好，你可以在主题选项开启主题自带的邮件服务，使用自己的邮箱服务。
+
+1. 开启后，新评论通知站长
+2. 评论回复通知被回复评论的用户
+3. 评论审核通知通知发布评论的用户
+
+---
+
+# 致谢
+
+本 fork 基于 [friend-nicen/theme-document](https://github.com/friend-nicen/theme-document)，原作者 [友人a丶](https://nicen.cn/) 完成了本主题的全部功能开发与维护。视觉风格借鉴自 [Anthropic Claude](https://claude.com/blog) 的产品页面设计。

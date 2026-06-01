@@ -1,0 +1,32 @@
+/*
+  小平板
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+  html {
+    min-width: unset;
+
+    body {
+      .password img {
+        width: 45%;
+      }
+
+      .main-container {
+        .main-main {
+          width: 95%;
+          /* 文章推荐 */
+          .recommend {
+            .list {
+              .swiper-slide {
+                width: calc(33.3% - 12px);
+              }
+            }
+          }
+        }
+
+        #space, #fixed {
+          display: none;
+        }
+      }
+    }
+  }
+}

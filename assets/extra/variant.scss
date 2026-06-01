@@ -1,0 +1,116 @@
+/*
+  主题所有变量 — claude.com/blog 风格暖色调
+*/
+:root {
+
+  /* —— 字体栈（落到系统中性字体 + 思源宋体后备） —— */
+  --theme-font-sans: "Inter", "Sohne", -apple-system, BlinkMacSystemFont,
+                     "PingFang SC", "Microsoft YaHei", "Source Han Serif SC",
+                     "Segoe UI", system-ui, sans-serif;
+  --theme-font-mono: "JetBrains Mono", "Fira Code", "Source Code Pro", Menlo,
+                     Monaco, Consolas, "Courier New", monospace;
+
+  /* —— 基础字号变量 —— */
+  --theme-text-super-mini: 0.4rem;
+  --theme-text-mini: 0.76rem;
+  --theme-text-more-mini: 0.69rem;
+  --theme-text-more-mini-2: 0.62rem;
+  --theme-text: 0.92rem;            /* 略放大，正文更易读 */
+  --theme-header-size: 1.1rem;
+  --theme-secondary: 0.82rem;
+  --theme-first-level-title: 1.5rem;
+  --theme-secondary-level-title: 1.2rem;
+  --theme-third-level-title: 1rem;
+  --theme-fourth-level-title: 0.9rem;
+
+  /* —— 核心配色：暖色基调（参考 claude.com/blog） —— */
+  --theme-color: #C75F2C;           /* 赤陶主色 */
+  --theme-color-20: rgba(199, 95, 44, 0.18);
+
+  --theme-white: #FAF9F5;           /* 暖白底（用作主背景的语义变量） */
+  --theme-black: #1A1815;           /* 暖深底（暗色模式背景的语义变量） */
+
+  --theme-black-text: #1F1E1B;      /* 暖深棕主文字 */
+  --theme-text-color: #1F1E1B;
+  --theme-text-secondary: rgba(31, 30, 27, 0.65);
+  --theme-text-mini-color: rgba(31, 30, 27, 0.55);
+  --theme-placeholder: #A8A39A;
+
+  --theme-margin-bottom: 1rem;
+  --theme-margin-bottom-max: 1.1rem;
+  --theme-li-padding: 1.2rem;
+
+  --theme-bg-color: var(--theme-white);
+
+  --theme-pre: #4E6E8E;             /* 保留蓝灰，对应代码块正文 */
+  --theme-front-main-color: #FFFFFF;
+  --theme-front-color: #F5F2EB;
+
+  /* —— 导航 / 头部 —— */
+  --theme-header-color: #FFFFFF;
+  --theme-header-bg-color: rgba(250, 249, 245, 0.85);
+  --theme-header-border: #E8E5DD;
+  --theme-header-border-color: #E8E5DD;
+  --theme-header-shadow-color: rgba(31, 30, 27, 0.04);
+  --theme-header-font-color: #1F1E1B;
+  --theme-sub-menu-bg-color: #FFFFFF;
+  --theme-sub-menu-font-color: #1F1E1B;
+
+  --theme-footer-bg-color: transparent;
+  --theme-footer-font-color: rgba(31, 30, 27, 0.7);
+
+  /* —— 悬停 / 交互 —— */
+  --theme-hover-bg: #1F1E1B;
+  --theme-hover-color: #FAF9F5;
+  --theme-hover-shadow: rgba(199, 95, 44, 0.18);
+
+  /* —— 代码块 —— */
+  --theme-code-bg: #F0EDE5;
+  --theme-code-text: #4e6e8e;
+
+  /* —— 状态提示块 —— */
+  --theme-success-bg-color: #ECF6F0;
+  --theme-success-line-color: #42B983;
+  --theme-success-title-color: #1B4D3A;
+  --theme-success-text-color: #2C3E50;
+
+  --theme-alert-bg-color: #FFFAE3;
+  --theme-alert-title-color: #746000;
+  --theme-alert-line-color: #E7C000;
+  --theme-alert-text-color: #746000;
+
+  --theme-error-bg-color: #FDECEC;
+  --theme-error-title-color: #7A1F1F;
+  --theme-error-line-color: #C0392B;
+  --theme-error-text-color: #7A1F1F;
+
+  /* —— 目录导航 —— */
+  --theme-first-index-title: 0.78rem;
+  --theme-secondary-index-title: 0.78rem;
+  --theme-third-index-title: 0.78rem;
+
+  /* —— 代码块 pre —— */
+  --theme-pre-code-bg: #1F1D18;
+  --theme-pre-code-shadow: #1F1D18;
+
+  /* —— 底部标签 —— */
+  --theme-label-bg: #1F1E1B;
+  --theme-label-color: #FAF9F5;
+  --theme-label-hover: #2D2B26;
+
+  --theme-emoji-size: 1.3rem;
+
+  /* —— 阴影：暖色低饱和 —— */
+  --theme-shadow: 0 2px 8px 0 rgba(31, 30, 27, 0.06);
+  --theme-shadow-lg: 0 8px 24px rgba(31, 30, 27, 0.08);
+
+  /* —— 全局过渡（被 common.scss 复用） —— */
+  --theme-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --theme-transition: 0.2s var(--theme-ease);
+}
+
+
+/*
+  SCSS 编译期变量（仅用于 @use 之外的内联阴影）
+*/
+$box-shadow: 0 2px 10px 3px rgba(31, 30, 27, 0.08);

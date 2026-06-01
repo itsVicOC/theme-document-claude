@@ -1,0 +1,38 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# OS
+desktop.ini
+ehthumbs.db
+
+# Node / build artifacts
+node_modules/
+*.log
+npm-debug.log*
+yarn-error.log
+
+# Sass build cache
+.sass-cache/
+*.sass-cache
+
+# Backup files
+*.bak
+*.orig
+*.tmp
+
+# Personal dev artifacts
+preview*.html
+preview-extra.*
+_*.scss
+pack.js
+dist/
+
+# WordPress (if running theme locally)
+wp-config.php
+wp-content/uploads/
+*.sql

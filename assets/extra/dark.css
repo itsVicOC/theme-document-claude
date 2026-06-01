@@ -1,0 +1,54 @@
+@charset "UTF-8";
+/*
+  暗黑模式变量 — claude.com/blog 暖深底风格
+*/
+.dark {
+  --theme-text-color: rgba(245, 242, 234, 0.92);
+  --theme-black-text: #F5F2EA;
+  --theme-bg-color: #1A1815;
+  /*
+    暗黑模式，导航栏样式
+  */
+  --theme-header-bg-color: rgba(26, 24, 21, 0.85);
+  --theme-header-font-color: #F5F2EA;
+  --theme-sub-menu-bg-color: #252320;
+  --theme-sub-menu-font-color: #F5F2EA;
+  --theme-header-border-color: transparent;
+  --theme-header-shadow-color: transparent;
+  --theme-header-color: #1A1815;
+  --theme-header-border: #1A1815;
+  /*
+    页脚
+  */
+  --theme-footer-bg-color: transparent;
+  --theme-footer-font-color: rgba(245, 242, 234, 0.7);
+  --theme-text-secondary: rgba(245, 242, 234, 0.7);
+  --theme-text-mini-color: rgba(245, 242, 234, 0.55);
+  --theme-placeholder: #6B6862;
+  --theme-hover-bg: #F5F2EA;
+  --theme-hover-color: #1A1815;
+  --theme-hover-shadow: rgba(199, 95, 44, 0.25);
+  --theme-front-color: #252320;
+  --theme-front-main-color: #2A2722;
+  --theme-pre: rgba(245, 242, 234, 0.92);
+  --theme-pre-code-bg: #131210;
+  --theme-pre-code-shadow: transparent;
+  --theme-label-bg: #2A2722;
+  --theme-label-hover: #353128;
+  /* 阴影：暗色下更微弱 */
+  --theme-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
+  --theme-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  /*文字块样式变量*/
+  --theme-success-bg-color: rgba(66, 185, 131, 0.12);
+  --theme-success-line-color: rgba(66, 185, 131, 0.6);
+  --theme-success-title-color: #C8E6D9;
+  --theme-success-text-color: #C8E6D9;
+  --theme-alert-bg-color: rgba(231, 192, 0, 0.12);
+  --theme-alert-line-color: rgba(231, 192, 0, 0.6);
+  --theme-alert-title-color: #E6D89A;
+  --theme-alert-text-color: #E6D89A;
+  --theme-error-bg-color: rgba(192, 57, 43, 0.18);
+  --theme-error-line-color: rgba(192, 57, 43, 0.7);
+  --theme-error-title-color: #E8B5B0;
+  --theme-error-text-color: #E8B5B0;
+}
