@@ -40,7 +40,7 @@ if ( nicen_theme_config( 'document_thumbnail_position', false ) == "right" ) {
 
             <div class="i-article-summary" <?php echo $position ?>>
                 <h2 id="<?php echo $prefix; ?>h2<?php echo get_the_ID(); ?>" class="i-article-title">
-                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+                    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
                 </h2>
                 <div class="i-article-excerpt"><?php nicen_theme_getExcerpt( get_the_excerpt(), $post->post_password ); ?></div>
                 <div class="i-article-info">

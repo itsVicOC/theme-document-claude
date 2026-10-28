@@ -14,7 +14,10 @@ html {
     background-color: var(--theme-bg-color);
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
+    font-family: var(--theme-font-sans);
+    font-size: var(--theme-text);
+    color: var(--theme-text-color);
+    line-height: 1.65;
 
     /*
       定义最小高度
@@ -1266,7 +1269,7 @@ html {
               }
             }
 
-            h2，h3, h4 {
+            h2, h3, h4 {
               position: relative;
               cursor: pointer;
             }
@@ -2497,97 +2500,3 @@ html {
   }
 
 }
-
-
-/*
- * ============================================================
- *  claude.com/blog 风格微调覆盖（叠加在原有组件样式之上）
- *  这些规则利用原主题已存在的选择器 / class 名，做视觉细化
- * ============================================================
- */
-
-/* 顶栏：半透明磨砂（claude.com 风格） */
-.main-header {
-  backdrop-filter: saturate(180%) blur(12px);
-  -webkit-backdrop-filter: saturate(180%) blur(12px);
-  border-bottom: 1px solid var(--theme-header-border);
-  box-shadow: 0 1px 0 var(--theme-header-shadow-color);
-  transition: background-color var(--theme-transition),
-              box-shadow var(--theme-transition),
-              border-color var(--theme-transition);
-}
-
-/* 通用按钮：圆角 + 平滑过渡 */
-button,
-input[type="button"],
-input[type="submit"],
-.btn,
-.button {
-  border-radius: 8px;
-  transition: background-color var(--theme-transition),
-              color var(--theme-transition),
-              border-color var(--theme-transition),
-              box-shadow var(--theme-transition),
-              transform var(--theme-transition);
-}
-
-button:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover,
-.btn:hover,
-.button:hover {
-  transform: translateY(-1px);
-}
-
-/* 卡片化文章列表项：圆角 + 暖色阴影 + hover 抬升 */
-.i-article {
-  border-radius: 12px;
-  transition: background-color var(--theme-transition),
-              box-shadow var(--theme-transition),
-              transform var(--theme-transition);
-}
-
-.i-article:hover {
-  box-shadow: var(--theme-shadow-lg);
-  transform: translateY(-2px);
-}
-
-/* 代码块容器：圆角 + 阴影（pre 由 common.scss 接管配色） */
-pre {
-  border-radius: 10px;
-  box-shadow: var(--theme-shadow);
-  border: 1px solid rgba(31, 30, 27, 0.06);
-}
-
-/* 状态提示块：圆角 */
-.theme-success,
-.theme-alert,
-.theme-error,
-blockquote.success,
-blockquote.alert,
-blockquote.error {
-  border-radius: 8px;
-}
-
-/* 输入框：聚焦时主色光晕 */
-input[type="text"]:focus,
-input[type="search"]:focus,
-input[type="password"]:focus,
-textarea:focus {
-  outline: none;
-  border-color: var(--theme-color) !important;
-  box-shadow: 0 0 0 3px var(--theme-color-20);
-}
-
-/* 段落与列表：增加节奏感 */
-p {
-  letter-spacing: 0.005em;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--theme-font-sans);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--theme-text-color);
-}
-

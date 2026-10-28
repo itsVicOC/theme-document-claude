@@ -18,7 +18,7 @@ if ( post_password_required() ) {
 	get_template_part( './template/index/password' );
 } else {
 	?>
-    <main class="main-container">
+    <main id="main-content" tabindex="-1" class="main-container">
         <!--  侧边目录  -->
 		<?php get_template_part( './template/index/sidebar-left' ); ?>
         <!--  文章  -->
@@ -28,6 +28,7 @@ if ( post_password_required() ) {
 				<?php get_template_part( './template/index/breadcrumb' ); ?>
                 <!-- 文章顶部 -->
 				<?php get_template_part( './template/index/article-header' ); ?>
+                <?php get_template_part( './template/index/mobile-toc' ); ?>
                 <!--  文章内容  -->
                 <div class="main-article">
 					<?php the_content(); ?>

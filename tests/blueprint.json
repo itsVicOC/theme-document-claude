@@ -1,0 +1,7 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": {"php": "8.3", "wp": "latest"},
+  "steps": [
+    {"step": "runPHP", "code": "<?php define('DOCUMENT_CLAUDE_PREVIEW', true); require '/wordpress/wp-content/themes/theme-document-claude/tests/seed.php';"}
+  ]
+}

@@ -227,7 +227,7 @@ function nicen_theme_navigator() {
 
 				$replace .= '<li data-pid="h2' . $h1_number . '">
 							<div class="first-index">
-								<div><a href="#h2' . $h1_number . '" title="' . $temp . '">' . $temp . '</a></div>
+								<div><a href="#h2' . $h1_number . '" title="' . esc_attr( $temp ) . '">' . esc_html( $temp ) . '</a></div>
 							</div>
 						</li>';
 
@@ -246,7 +246,7 @@ function nicen_theme_navigator() {
 
 				$replace .= '<li data-pid="h3' . $h2_number . '"' . ( isset( $parent['h1'] ) ? ' data-parent="' . $parent['h1'] . '"' : '' ) . '>
 							<div class="secondary-index">
-								<div><a href="#h3' . $h2_number . '" title="' . $temp . '">' . $temp . '</a></div>
+								<div><a href="#h3' . $h2_number . '" title="' . esc_attr( $temp ) . '">' . esc_html( $temp ) . '</a></div>
 							</div>
 						</li>';
 
@@ -264,7 +264,7 @@ function nicen_theme_navigator() {
 
 				$replace .= '<li data-pid="h4' . $h3_number . '"' . ( isset( $parent['h2'] ) ? ' data-parent="' . $parent['h2'] . '"' : '' ) . '>
 							<div class="third-index">
-								<div><a href="#h4' . $h3_number . '" title="' . $temp . '">' . $temp . '</a></div>
+								<div><a href="#h4' . $h3_number . '" title="' . esc_attr( $temp ) . '">' . esc_html( $temp ) . '</a></div>
 							</div>
 						</li>';
 
@@ -296,7 +296,7 @@ function nicen_theme_navigator() {
 
 				$replace .= '<li>
 							<div class="first-index">
-								<div><a href="#h2' . get_the_ID() . '" title="' . $title . '">' . $h1_number . '. ' . $title . '</a></div>
+								<div><a href="#h2' . get_the_ID() . '" title="' . esc_attr( $title ) . '">' . $h1_number . '. ' . esc_html( $title ) . '</a></div>
 							</div>
 						</li>';
 

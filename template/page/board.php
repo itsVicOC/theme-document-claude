@@ -8,7 +8,7 @@
 nicen_theme_setPostViews( get_the_ID() );//阅读次数加1
 get_header();//加载顶部内容
 ?>
-<main class="main-container no-sidebar">
+<main id="main-content" tabindex="-1" class="main-container no-sidebar">
     <!--  文章  -->
     <div class="main-main">
         <article class="main-content">

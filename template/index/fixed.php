@@ -16,8 +16,8 @@
 <!--  底部区域  -->
 <div class="fixed">
     <!--  回到顶部  -->
-    <button class="toTop" data-text="回到顶部"><i class="iconfont icon-you-copy-copy-copy"></i></button>
+    <button type="button" class="toTop" data-text="回到顶部" aria-label="回到顶部"><i class="iconfont icon-you-copy-copy-copy" aria-hidden="true"></i></button>
     <!--  阅读进度  -->
-    <button id="progress" data-text="阅读进度">0%</button>
+    <span id="progress" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">0%</span>
 </div>
 

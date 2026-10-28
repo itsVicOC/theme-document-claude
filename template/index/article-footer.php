@@ -24,8 +24,7 @@ $previous = get_previous_post();//上一篇
         <!--赞赏-->
 		<?php if ( nicen_theme_config( "document_show_donate", false ) ) { ?>
             <div class="donate">
-                <a href="<?php nicen_theme_config( 'document_donate_url' ); ?>">
-                    <button>赞赏</button>
+                <a class="donate-link" href="<?php echo esc_url( nicen_theme_config( 'document_donate_url', false ) ); ?>">赞赏
                 </a>
             </div>
 		<?php } ?>

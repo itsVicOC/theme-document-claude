@@ -1,0 +1,21 @@
+{
+  "name": "theme-document-claude",
+  "private": true,
+  "version": "1.1.1",
+  "description": "Build and preview the Document Claude WordPress theme",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "wp-playground-cli server --auto-mount --php=8.3 --port=9400 --blueprint=tests/blueprint.json",
+    "package": "npm run build && python3 scripts/package.py && npm run test:install",
+    "check:php": "node scripts/check-php.mjs",
+    "test:install": "node scripts/test-install.mjs"
+  },
+  "devDependencies": {
+    "@wp-playground/cli": "3.1.61",
+    "sass": "1.106.1"
+  },
+  "engines": {
+    "node": ">=24.18.0",
+    "npm": ">=11.16.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "archive": "theme-document.zip",
+  "layout": "theme files at ZIP root",
+  "themeDirectoryWhenFilenameUnchanged": "theme-document",
+  "version": "1.1.1",
+  "entries": 259,
+  "bytes": 1490394,
+  "sha256": "802f239f75ceaa4ee7e6572ac197b6a15b63813609510ecbd730ec620d6dfcc4",
+  "nativeInstallerTests": "default and PclZip: install + overwrite passed"
+}

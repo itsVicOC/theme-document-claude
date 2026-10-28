@@ -23,7 +23,7 @@ if ( nicen_theme_showArticleCate() ) {
                         <li class="active">🗂️ 文章导航</li>
                         <!-- <li>修改记录</li>-->
                     </ul>
-                    <i class="iconfont icon-daohang-caidan"></i>
+                    <button type="button" class="toc-collapse iconfont icon-daohang-caidan" aria-label="展开或收起全部章节" aria-expanded="true"></button>
                 </div>
                 <div class="scroll index-scroll">
                     <div class="line"></div>

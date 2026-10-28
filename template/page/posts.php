@@ -9,7 +9,7 @@
 get_header();
 query_posts( "nopaging=true&posts_per_page=-1&orderby=modified" );//查询所有文章，安装更新日期
 ?>
-    <main class="main-container index">
+    <main id="main-content" tabindex="-1" class="main-container index archive-page">
         <div class="main-main">
             <!--  文章  -->
             <section class="main-content">

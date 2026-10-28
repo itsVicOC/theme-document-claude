@@ -18,7 +18,7 @@ if ( ! have_posts() && is_search() ) {
 	get_header();
 
 	?>
-    <main class="main-container index">
+    <main id="main-content" tabindex="-1" class="main-container index">
 		<?php get_template_part( './template/index/sidebar-index-left' ); ?>
         <div class="main-main">
 			<?php

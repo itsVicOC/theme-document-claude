@@ -1,8 +1,50 @@
 # Document — claude.com 风格改造版
 
+## 安装包兼容修正（1.1.1）
+
+请使用新文件 `dist/theme-document.zip`。新版将 `style.css`、`index.php` 和 `functions.php` 直接放在 ZIP 最外层，显式记录子目录，并统一文件权限。请保持文件名为 `theme-document.zip`，WordPress 会以此作为安装目录名。
+
+`npm run package` 现在会调用 WordPress 原生主题安装器，实际验证默认解压器与 PclZip 的安装、覆盖更新、主题名称和版本。安装测试失败时打包命令会报错。
+
+
+## 2026-10-28 — 响应式与阅读体验优化（1.1.0）
+
+修复移动菜单被顶栏裁切、1025px 横向溢出和滚动时透明顶栏仍接收点击的问题。保留暖白与赤陶色，统一手机、平板和桌面布局，改善文章卡片、正文、代码高亮、聚合页、评论表单、深色模式及空状态。
+
+- `<1024px` 单栏；`1024–1279px` 正文与右栏；`≥1280px` 按现有配置显示三栏。
+- 小于 1280px 使用完整抽屉导航，支持多级菜单、遮罩、Escape、焦点限制与返回。
+- 已启用目录的文章在小屏显示正文前折叠目录；原有开关、HTML/短代码模式、URL 和菜单位置保留。
+- 普通文字用稍深的赤陶色 `#B14D24`，深色模式对应 `#E6A17A`；装饰色仍延续原有暖色风格。
+
+[查看修改前后截图](docs/visual-review.html) · [验证记录](docs/qa/verification.md)
+
+### 构建与本地预览
+
+开发工具需要 Node.js 24.18+、npm 11.16+；打包还需要 Python 3。网站运行无需 Node.js。
+
+```sh
+npm ci
+npm run build
+npm run dev
+npm run check:php
+npm run package
+```
+
+`npm run dev` 在 `http://127.0.0.1:9400` 启动隔离的 WordPress Playground，生成演示文章、菜单和小部件。测试数据仅存在于临时 WordPress，不访问线上站点。
+
+样式入口是 `style.scss` 与 `common/page/page.scss`。统一断点与组件规则在 `assets/extra/responsive.scss`；旧 `w-*.scss` 和独立 `assets/extra/*.css` 不再作为运行入口。修改 SCSS 后运行构建并一并提交生成的 CSS。
+
+### 安装与更新
+
+安装包为 `dist/theme-document.zip`，主题文件直接位于 ZIP 根目录，WordPress 安装后的目录为 `theme-document`。请保持 ZIP 文件名不变，以沿用当前线上目录。在 WordPress 后台上传并选择替换现有主题，可以沿用该目录的菜单和主题绑定。先保存当前主题文件副本，便于回退；无需删除或重建主题选项。若站点使用了其他目录名，请先将包内目录改为对应名称。
+
+安装包不包含测试数据、开发依赖、报告或截图。浏览器回归脚本位于 `tests/`，通过 Codex 的 CUA 浏览器接口执行，完整结果见验证记录。
+
+---
+
 😁 作为一个程序员，在日常的工作、生活、学习的过程中基本都有很多需要做笔记的地方；做笔记的主要目的之一是为了"温故而知新"，另一个则是为了在下一次遇到的时候，不需要再次耗费精力去找解决方法。
 
-本版本基于 [friend-nicen/theme-document](https://github.com/friend-nicen/theme-document) 进行**纯视觉层面**的 claude.com 风格改造（配色 + 排版 + 关键组件），不改功能、不改模板。原始主题的能力完全保留。
+本版本基于 [friend-nicen/theme-document](https://github.com/friend-nicen/theme-document) 进行 claude.com 暖色风格与响应式体验改造（配色、排版、组件及必要的前端交互）。保留原始主题功能和已有配置。
 
 原作者 demo：[https://nicen.cn](https://nicen.cn/)
 
@@ -73,7 +115,7 @@ Tiempos / Sohne 是 Anthropic 内部商业字体，公网不可用。落到以�
 
 ## 升级注意
 
-- 升级前请先在 WP 后台 → 外观 → 主题里**删除旧版 theme-document**，再上传新 zip。
+- 升级时保持现有主题目录名，通过上传 ZIP 替换文件，保留菜单绑定和已有主题选项。
 - 若浏览器仍显示旧色，强刷一次（Ctrl+Shift+R）清掉 `style.css` 的 `filemtime` 版本缓存。
 - 旧版用户 localStorage 中残留的 `theme-color` 值（来自已删除的 8 套配色）会作为空 class 写入 `<html>`，CSS 已无对应规则，**无视觉影响**，但若想清干净可在浏览器控制台执行 `localStorage.removeItem('theme-color')`。
 
@@ -92,7 +134,7 @@ Tiempos / Sohne 是 Anthropic 内部商业字体，公网不可用。落到以�
 
 ## 关于主题
 
-原版大部分代码都有注释，作为学习 wordpress 主题开发的模板很合适。本 fork 仅在样式层做了改动，未触及 PHP / JS 业务逻辑。
+原版大部分代码都有注释，作为学习 wordpress 主题开发的模板很合适。本 fork 保留原主题功能，同时改进样式、响应式模板与前端交互。
 
 ## 使用须知
 

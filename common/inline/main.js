@@ -8,9 +8,10 @@ function toggleTheme(flag = true) {
             .addClass('dark')
             .removeClass('personal');
         //标记暗黑模式
-        localStorage.setItem('night', 1);
+        try { localStorage.setItem('night', 1); } catch (e) { /* Storage may be disabled. */ }
         //改变图标
         $(function () {
+            $('.read-mode').attr('aria-pressed', 'true').attr('aria-label', '切换浅色模式').find('.mode-label').text('浅色模式');
             $('.read-mode i')
                 .removeClass("icon-baitian-qing")
                 .addClass("icon-yueliang");
@@ -21,9 +22,10 @@ function toggleTheme(flag = true) {
             .removeClass('dark')
             .addClass('personal');
         //移除暗黑模式标记
-        localStorage.removeItem('night');
+        try { localStorage.removeItem('night'); } catch (e) { /* Storage may be disabled. */ }
         //改变图标
         $(function () {
+            $('.read-mode').attr('aria-pressed', 'false').attr('aria-label', '切换深色模式').find('.mode-label').text('深色模式');
             $('.read-mode i')
                 .removeClass("icon-yueliang")
                 .addClass("icon-baitian-qing");
@@ -32,18 +34,16 @@ function toggleTheme(flag = true) {
 }
 
 
-/*
-* 动态rem
-* */
-let l = () => {
-    let r = document.documentElement, o = r.offsetWidth / 100;
-    o < 17 && (o = 17), r.style.fontSize = o + "px", window.rem = o
-};
-window.onresize = l;
-l();
+/* Keep legacy consumers in sync with the user's actual root font size. */
+function syncRootRem() {
+    window.rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
+window.addEventListener('resize', syncRootRem, { passive: true });
+syncRootRem();
 
 /*同步阅读模式（夜间模式保留；旧的主题色切换已移除）*/
-let night = localStorage.getItem('night');
+let night;
+try { night = localStorage.getItem('night'); } catch (e) { /* Use light mode. */ }
 
 /*
 * 是否需要切换模式
@@ -56,16 +56,7 @@ if (!!night) {
 * 获取元素在网页的实际top
 * */
 $.fn.getTop = function () {
-    let position = this.position();
-    /*
-    * 为0代表有很多offsetTop要计算
-    * */
-    if (position.top !== 0) {
-        return position.top;
-    } else {
-        let html = $('html').get(0);
-        return this.get(0).getBoundingClientRect().top + html.scrollTop;
-    }
+    return this.length ? this.get(0).getBoundingClientRect().top + window.scrollY : 0;
 }
 
 

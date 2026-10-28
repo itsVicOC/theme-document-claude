@@ -5,7 +5,7 @@ Theme URI: https://nicen.cn
 Author: 友人a丶
 Author URI: https://nicen.cn
 Description: 一个基于文档类型的博客主题，更加方便的记录、查询学习笔记
-Version: 1.0
+Version: 1.1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: Document
@@ -17,6 +17,8 @@ Tags: 文档,自适应,主题切换,阅读进度跟随
   主题所有变量 — claude.com/blog 风格暖色调
 */
 :root {
+  --theme-header-height: 64px;
+  --theme-on-accent: #FFFFFF;
   /* —— 字体栈（落到系统中性字体 + 思源宋体后备） —— */
   --theme-font-sans: "Inter", "Sohne", -apple-system, BlinkMacSystemFont,
                      "PingFang SC", "Microsoft YaHei", "Source Han Serif SC",
@@ -24,27 +26,27 @@ Tags: 文档,自适应,主题切换,阅读进度跟随
   --theme-font-mono: "JetBrains Mono", "Fira Code", "Source Code Pro", Menlo,
                      Monaco, Consolas, "Courier New", monospace;
   /* —— 基础字号变量 —— */
-  --theme-text-super-mini: 0.4rem;
-  --theme-text-mini: 0.76rem;
-  --theme-text-more-mini: 0.69rem;
-  --theme-text-more-mini-2: 0.62rem;
-  --theme-text: 0.92rem; /* 略放大，正文更易读 */
+  --theme-text-super-mini: 0.8125rem;
+  --theme-text-mini: 0.8125rem;
+  --theme-text-more-mini: 0.8125rem;
+  --theme-text-more-mini-2: 0.8125rem;
+  --theme-text: 1rem; /* 略放大，正文更易读 */
   --theme-header-size: 1.1rem;
-  --theme-secondary: 0.82rem;
+  --theme-secondary: 0.875rem;
   --theme-first-level-title: 1.5rem;
   --theme-secondary-level-title: 1.2rem;
   --theme-third-level-title: 1rem;
   --theme-fourth-level-title: 0.9rem;
   /* —— 核心配色：暖色基调（参考 claude.com/blog） —— */
-  --theme-color: #C75F2C; /* 赤陶主色 */
-  --theme-color-20: rgba(199, 95, 44, 0.18);
+  --theme-color: #B14D24; /* 赤陶主色 */
+  --theme-color-20: rgba(199, 95, 44, 0.10);
   --theme-white: #FAF9F5; /* 暖白底（用作主背景的语义变量） */
   --theme-black: #1A1815; /* 暖深底（暗色模式背景的语义变量） */
   --theme-black-text: #1F1E1B; /* 暖深棕主文字 */
   --theme-text-color: #1F1E1B;
-  --theme-text-secondary: rgba(31, 30, 27, 0.65);
-  --theme-text-mini-color: rgba(31, 30, 27, 0.55);
-  --theme-placeholder: #A8A39A;
+  --theme-text-secondary: #625D54;
+  --theme-text-mini-color: #746F65;
+  --theme-placeholder: #746F65;
   --theme-margin-bottom: 1rem;
   --theme-margin-bottom-max: 1.1rem;
   --theme-li-padding: 1.2rem;
@@ -66,7 +68,7 @@ Tags: 文档,自适应,主题切换,阅读进度跟随
   /* —— 悬停 / 交互 —— */
   --theme-hover-bg: #1F1E1B;
   --theme-hover-color: #FAF9F5;
-  --theme-hover-shadow: rgba(199, 95, 44, 0.18);
+  --theme-hover-shadow: rgba(199, 95, 44, 0.10);
   /* —— 代码块 —— */
   --theme-code-bg: #F0EDE5;
   --theme-code-text: #4e6e8e;
@@ -84,9 +86,9 @@ Tags: 文档,自适应,主题切换,阅读进度跟随
   --theme-error-line-color: #C0392B;
   --theme-error-text-color: #7A1F1F;
   /* —— 目录导航 —— */
-  --theme-first-index-title: 0.78rem;
-  --theme-secondary-index-title: 0.78rem;
-  --theme-third-index-title: 0.78rem;
+  --theme-first-index-title: 0.875rem;
+  --theme-secondary-index-title: 0.875rem;
+  --theme-third-index-title: 0.875rem;
   /* —— 代码块 pre —— */
   --theme-pre-code-bg: #1F1D18;
   --theme-pre-code-shadow: #1F1D18;
@@ -111,6 +113,11 @@ Tags: 文档,自适应,主题切换,阅读进度跟随
   暗黑模式变量 — claude.com/blog 暖深底风格
 */
 .dark {
+  --theme-color: #E6A17A;
+  --theme-color-20: rgba(230, 161, 122, 0.2);
+  --theme-on-accent: #1A1815;
+  --theme-code-bg: #353128;
+  --theme-code-text: #C3D3E3;
   --theme-text-color: rgba(245, 242, 234, 0.92);
   --theme-black-text: #F5F2EA;
   --theme-bg-color: #1A1815;
@@ -121,10 +128,10 @@ Tags: 文档,自适应,主题切换,阅读进度跟随
   --theme-header-font-color: #F5F2EA;
   --theme-sub-menu-bg-color: #252320;
   --theme-sub-menu-font-color: #F5F2EA;
-  --theme-header-border-color: transparent;
+  --theme-header-border-color: #484238;
   --theme-header-shadow-color: transparent;
   --theme-header-color: #1A1815;
-  --theme-header-border: #1A1815;
+  --theme-header-border: #484238;
   /*
     页脚
   */
@@ -132,7 +139,7 @@ Tags: 文档,自适应,主题切换,阅读进度跟随
   --theme-footer-font-color: rgba(245, 242, 234, 0.7);
   --theme-text-secondary: rgba(245, 242, 234, 0.7);
   --theme-text-mini-color: rgba(245, 242, 234, 0.55);
-  --theme-placeholder: #6B6862;
+  --theme-placeholder: #BDB5A8;
   --theme-hover-bg: #F5F2EA;
   --theme-hover-color: #1A1815;
   --theme-hover-shadow: rgba(199, 95, 44, 0.25);
@@ -317,13 +324,13 @@ Tags: 文档,自适应,主题切换,阅读进度跟随
 公共初始化 — claude.com/blog 风格
 */
 * {
-  font-size: var(--theme-text);
-  color: var(--theme-text-color);
-  font-family: var(--theme-font-sans);
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
   box-sizing: border-box;
-  line-height: 1.6; /* 贴近 claude.com 克制感 */
+  line-height: inherit; /* 贴近 claude.com 克制感 */
   word-wrap: break-word;
-  word-break: break-all;
+  word-break: normal;
   word-spacing: normal;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
   -webkit-font-smoothing: antialiased;
@@ -459,7 +466,10 @@ html body {
   background-color: var(--theme-bg-color);
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
+  font-family: var(--theme-font-sans);
+  font-size: var(--theme-text);
+  color: var(--theme-text-color);
+  line-height: 1.65;
   /*
     定义最小高度
   */
@@ -1468,7 +1478,7 @@ html body .main-container .main-main .main-content .main-article h2:before {
   margin-right: 0.6rem;
   background-color: var(--theme-color);
 }
-html body .main-container .main-main .main-content .main-article h2，h3, html body .main-container .main-main .main-content .main-article h4 {
+html body .main-container .main-main .main-content .main-article h2, html body .main-container .main-main .main-content .main-article h3, html body .main-container .main-main .main-content .main-article h4 {
   position: relative;
   cursor: pointer;
 }
@@ -2454,448 +2464,1090 @@ html body .index .main-main .hasDynamic {
   padding-top: 0;
 }
 
-/*
- * ============================================================
- *  claude.com/blog 风格微调覆盖（叠加在原有组件样式之上）
- *  这些规则利用原主题已存在的选择器 / class 名，做视觉细化
- * ============================================================
- */
-/* 顶栏：半透明磨砂（claude.com 风格） */
-.main-header {
-  backdrop-filter: saturate(180%) blur(12px);
-  -webkit-backdrop-filter: saturate(180%) blur(12px);
-  border-bottom: 1px solid var(--theme-header-border);
-  box-shadow: 0 1px 0 var(--theme-header-shadow-color);
-  transition: background-color var(--theme-transition), box-shadow var(--theme-transition), border-color var(--theme-transition);
+/* Unified layout and component refinements, including all breakpoints. */
+/* One responsive system. Legacy w-*.scss files are no longer entrypoints. */
+html {
+  min-width: 0;
+  font-size: 100%;
+  scroll-padding-top: calc(var(--theme-header-height) + 24px);
 }
 
-/* 通用按钮：圆角 + 平滑过渡 */
-button,
-input[type=button],
-input[type=submit],
-.btn,
-.button {
-  border-radius: 8px;
-  transition: background-color var(--theme-transition), color var(--theme-transition), border-color var(--theme-transition), box-shadow var(--theme-transition), transform var(--theme-transition);
+[hidden] {
+  display: none !important;
 }
 
-button:hover,
-input[type=button]:hover,
-input[type=submit]:hover,
-.btn:hover,
-.button:hover {
-  transform: translateY(-1px);
+:focus-visible {
+  outline: 2px solid var(--theme-color);
+  outline-offset: 4px;
 }
 
-/* 卡片化文章列表项：圆角 + 暖色阴影 + hover 抬升 */
-.i-article {
-  border-radius: 12px;
-  transition: background-color var(--theme-transition), box-shadow var(--theme-transition), transform var(--theme-transition);
+.screen-reader-text, .skip-link:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
-.i-article:hover {
-  box-shadow: var(--theme-shadow-lg);
-  transform: translateY(-2px);
+.skip-link:focus {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 2000;
+  padding: 12px;
+  background: var(--theme-front-main-color);
 }
 
-/* 代码块容器：圆角 + 阴影（pre 由 common.scss 接管配色） */
-pre {
-  border-radius: 10px;
-  box-shadow: var(--theme-shadow);
-  border: 1px solid rgba(31, 30, 27, 0.06);
+button, input, textarea, select {
+  font: inherit;
 }
 
-/* 状态提示块：圆角 */
-.theme-success,
-.theme-alert,
-.theme-error,
-blockquote.success,
-blockquote.alert,
-blockquote.error {
+button {
+  cursor: pointer;
+}
+
+button, input, textarea {
   border-radius: 8px;
 }
 
-/* 输入框：聚焦时主色光晕 */
-input[type=text]:focus,
-input[type=search]:focus,
-input[type=password]:focus,
-textarea:focus {
-  outline: none;
-  border-color: var(--theme-color) !important;
+input::placeholder, textarea::placeholder {
+  color: var(--theme-placeholder);
+  opacity: 1;
+}
+
+input:focus-visible, textarea:focus-visible {
+  border-color: var(--theme-color);
   box-shadow: 0 0 0 3px var(--theme-color-20);
 }
 
-/* 段落与列表：增加节奏感 */
-p {
-  letter-spacing: 0.005em;
+h1, h2, h3, h4 {
+  text-wrap: pretty;
 }
 
-h1, h2, h3, h4, h5, h6 {
+html body .main-header {
+  min-width: 0;
+  width: 100%;
+  height: var(--theme-header-height);
+  padding: 0 max(24px, (100% - 1392px) / 2);
+  gap: 24px;
+  opacity: 1;
+  box-shadow: 0 1px 0 var(--theme-header-border);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+}
+html body .main-header .left {
+  min-width: 0;
+  flex: 0 1 auto;
+}
+html body .main-header .left a.logo {
+  margin: 0;
+  min-width: 0;
+  height: 32px;
+}
+html body .main-header .left a.logo img {
+  flex: 0 0 auto;
+  margin-right: 12px;
+  object-fit: contain;
+}
+html body .main-header .left a.logo .title {
   font-family: var(--theme-font-sans);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: 18px;
+  letter-spacing: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+html body .main-header .right {
+  width: auto;
+  min-width: 0;
+  gap: 20px;
+  flex: 0 1 auto;
+}
+html body .main-header .drawer-heading, html body .main-header .nav-backdrop, html body .main-header .daohang, html body .main-header .submenu-toggle, html body .main-header .mode-label {
+  display: none;
+}
+html body .main-header .menu-left {
+  margin: 0;
+  flex: 0 1 210px;
+}
+html body .main-header .menu-left .search-div {
+  height: 44px;
+  width: 100%;
+}
+html body .main-header .menu-left .search-div .search-icon {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  left: 0;
+  width: 40px;
+  min-height: 44px;
+  justify-content: center;
+  font-size: 16px;
+}
+html body .main-header .menu-left .search-div .search {
+  width: 100%;
+  min-width: 100px;
+  height: 40px;
+  padding-left: 38px;
+  font-size: 14px;
   color: var(--theme-text-color);
 }
+html body .main-header .right .menu {
+  padding: 0;
+  gap: 20px;
+}
+html body .main-header .right .menu > .menu-item {
+  margin: 0;
+  font-size: 14px;
+}
+html body .main-header .right .menu .menu-item > a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+html body .main-header .right .menu .read-mode {
+  background: transparent;
+  color: inherit;
+  border: 0;
+  padding: 10px;
+  min-width: 44px;
+  min-height: 44px;
+}
+html body .main-header .right .menu .read-mode .iconfont {
+  font-size: 18px;
+}
+html body .main-header .right .menu .menu-item-has-children > a {
+  font-family: inherit !important;
+}
+html body .main-header .right .menu .menu-item-has-children > a:after {
+  font-family: iconfont;
+}
+html body .main-header .right .menu .menu-item:focus-within > .sub-menu {
+  visibility: visible;
+  opacity: 1;
+}
+html body .main-header .right .menu .sub-menu {
+  top: 100%;
+  min-width: 180px;
+  border: 1px solid var(--theme-header-border);
+  box-shadow: var(--theme-shadow-lg);
+}
+html body .main-header .right .menu .sub-menu .sub-menu {
+  top: 0;
+  left: 100%;
+}
+html body .main-header .right .menu-left .search-div {
+  height: 44px;
+  width: 100%;
+}
+html body .main-header .right .menu-left .search-div .search {
+  width: 100%;
+  height: 44px;
+  min-width: 0;
+  padding-left: 40px;
+}
+html body .main-header .right .menu-left .search-div .search-icon {
+  left: 0;
+  border: 0;
+  background: transparent;
+  height: 44px;
+  width: 40px;
+  padding: 0;
+  justify-content: center;
+}
+html body .main-container {
+  width: 100%;
+  max-width: 1440px;
+  min-width: 0;
+  height: auto;
+  overflow: visible;
+  margin: calc(var(--theme-header-height) + 24px) auto 0;
+  padding: 0 24px;
+  align-items: stretch;
+  gap: 24px;
+}
+html body .main-container .main-main {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+  max-width: 880px;
+  margin: 0 0 24px;
+}
+html body .main-container .main-main .main-content, html body .main-container .main-main .div-info, html body .main-container .main-main .non-result {
+  padding: 28px 32px;
+  border: 1px solid var(--theme-header-border);
+  border-radius: 12px;
+}
+html body .main-container .main-main .main-content {
+  margin-bottom: 24px;
+}
+html body .main-container .main-main .main-content > h1 {
+  font-size: clamp(24px, 2.3vw, 34px);
+  line-height: 1.4;
+  margin: 24px 0 16px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  cursor: auto;
+}
+html body .main-container .main-main .main-content .breadcrumb {
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+html body .main-container .main-main .main-content .article-info ul {
+  flex-wrap: wrap;
+  gap: 8px 0;
+}
+html body .main-container .main-main .main-content .article-info ul li {
+  line-height: 1.5;
+}
+html body .main-container .main-main .main-content .main-article {
+  font-size: 17px;
+  line-height: 1.8;
+  overflow-wrap: break-word;
+}
+html body .main-container .main-main .main-content .main-article h1, html body .main-container .main-main .main-content .main-article h2, html body .main-container .main-main .main-content .main-article h3, html body .main-container .main-main .main-content .main-article h4 {
+  scroll-margin-top: 0;
+  line-height: 1.5;
+  cursor: auto;
+  font-weight: 650;
+  margin: 1.6em 0 0.8em;
+}
+html body .main-container .main-main .main-content .main-article h2 {
+  font-size: 23px;
+  display: block;
+  padding-bottom: 10px;
+}
+html body .main-container .main-main .main-content .main-article h2:before {
+  display: none;
+}
+html body .main-container .main-main .main-content .main-article h3 {
+  font-size: 20px;
+}
+html body .main-container .main-main .main-content .main-article h4 {
+  font-size: 18px;
+}
+html body .main-container .main-main .main-content .main-article p {
+  margin-bottom: 1.25em;
+}
+html body .main-container .main-main .main-content .main-article a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+html body .main-container .main-main .main-content .main-article li {
+  margin: 0.35em 0;
+}
+html body .main-container .main-main .main-content .main-article img, html body .main-container .main-main .main-content .main-article .container-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+html body .main-container .main-main .main-content .main-article figure, html body .main-container .main-main .main-content .main-article .container-image {
+  max-width: 100%;
+  margin: 1.5em 0;
+}
+html body .main-container .main-main .main-content .main-article iframe, html body .main-container .main-main .main-content .main-article video {
+  max-width: 100%;
+}
+html body .main-container .main-main .main-content .main-article pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+  border-radius: 10px;
+  line-height: 1.7;
+}
+html body .main-container .main-main .main-content .main-article pre *, html body .main-container .main-main .main-content .main-article code, html body .main-container .main-main .main-content .main-article kbd, html body .main-container .main-main .main-content .main-article samp {
+  font-family: var(--theme-font-mono);
+}
+html body .main-container .main-main .main-content .main-article code:not([class*=language-]) {
+  overflow-wrap: anywhere;
+}
+html body .main-container .main-main .main-content .main-article pre code {
+  overflow-wrap: normal !important;
+  word-break: normal;
+}
+html body .main-container .main-main .main-content .main-article .table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  margin: 1.5em 0;
+  border: 1px solid var(--theme-header-border);
+  border-radius: 8px;
+}
+html body .main-container .main-main .main-content .main-article table {
+  min-width: 100%;
+  margin: 0;
+}
+html body .main-container .main-main .main-content .main-article table td, html body .main-container .main-main .main-content .main-article table th {
+  min-width: 8rem;
+  border-color: var(--theme-header-border);
+  padding: 10px 14px;
+}
+html body .main-container .main-main .main-content .main-article table th {
+  background: var(--theme-front-color);
+  text-align: left;
+}
+html body .main-container .main-main .main-content .main-article blockquote {
+  margin: 1.5em 0;
+  padding: 16px 20px;
+  border-left: 3px solid var(--theme-color);
+  background: var(--theme-front-color);
+  border-radius: 0 8px 8px 0;
+}
+html body .main-container .main-main .main-content .pagination {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+html body .main-container .main-main .main-content .pagination .loadnext {
+  min-height: 44px;
+  padding: 10px 24px;
+  color: var(--theme-color);
+  background: var(--theme-front-color);
+  border: 1px solid var(--theme-header-border);
+}
+html body .main-container .main-main .div-info {
+  margin-bottom: 24px;
+}
+html body .main-container .main-main .div-info .comment-form .comment-form-main .comment-container {
+  gap: 16px;
+  border: 0;
+  margin: 16px 0 24px;
+}
+html body .main-container .main-main .div-info .comment-form .comment-form-main .comment-container * {
+  height: auto;
+  padding: 0;
+}
+html body .main-container .main-main .div-info .comment-form .comment-form-main .comment-container label {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 14px;
+  color: var(--theme-text-secondary);
+}
+html body .main-container .main-main .div-info .comment-form .comment-form-main .comment-container input.comment-name, html body .main-container .main-main .div-info .comment-form .comment-form-main .comment-container input.comment-mail, html body .main-container .main-main .div-info .comment-form .comment-form-main .comment-container input.comment-url {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  min-height: 44px;
+  font-size: 16px;
+}
+html body .main-container .main-main .div-info input, html body .main-container .main-main .div-info textarea {
+  border: 1px solid var(--theme-header-border);
+  background: var(--theme-front-main-color);
+  color: var(--theme-text-color);
+}
+html body .main-container .main-main .div-info .comment-form .comment-form-main .comment-textarea .comment-content {
+  font-size: 16px;
+  min-height: 160px;
+  padding: 14px;
+  line-height: 1.7;
+}
+html body .main-container .main-main .div-info .comment-form .comment-form-footer button {
+  min-height: 44px;
+  padding: 10px 28px;
+  color: var(--theme-on-accent);
+  background: var(--theme-color);
+  border: 1px solid var(--theme-color);
+}
+html body .main-container .main-main .div-info .comment_list {
+  padding: 0;
+}
+html body .main-container .main-main .div-info .comment_list .children {
+  padding-left: 20px;
+}
+html body .main-container .main-main .div-info .comment_list .comment-content, html body .main-container .main-main .div-info .comment_list .comment-meta {
+  padding-left: 0;
+}
+html body .main-container .main-main .recommend {
+  min-width: 0;
+}
+html body .main-container #space, html body .main-container #fixed {
+  flex: 0 0 240px;
+  width: 240px;
+  min-width: 0;
+  max-width: 240px;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+html body .main-container #fixed {
+  flex-basis: 260px;
+  width: 260px;
+  max-width: 260px;
+}
+html body .main-container #space #navigator, html body .main-container #fixed #right {
+  position: sticky;
+  top: calc(var(--theme-header-height) + 24px);
+  left: auto;
+  width: 100%;
+  min-width: 0;
+  max-height: calc(100vh - var(--theme-header-height) - 48px);
+  max-height: calc(100dvh - var(--theme-header-height) - 48px);
+  min-height: 0;
+  margin: 0;
+  opacity: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+html body .main-container #space #navigator {
+  border: 1px solid var(--theme-header-border);
+  border-radius: 12px;
+}
+html body .main-container #space #navigator .main-top {
+  font-size: 15px;
+  padding: 12px;
+}
+html body .main-container #space #navigator .main-top ul li {
+  margin: 0;
+}
+html body .main-container #space #navigator .scroll {
+  margin: 0;
+  padding: 12px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+html body .main-container #space #navigator .scroll .line {
+  display: none;
+}
+html body .main-container #space #navigator .scroll ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html body .main-container #space #navigator .scroll li {
+  margin: 0;
+}
+html body .main-container #space #navigator .scroll .first-index, html body .main-container #space #navigator .scroll .secondary-index, html body .main-container #space #navigator .scroll .third-index {
+  display: flex;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
+}
+html body .main-container #space #navigator .scroll .first-index > div, html body .main-container #space #navigator .scroll .secondary-index > div, html body .main-container #space #navigator .scroll .third-index > div {
+  min-width: 0;
+  width: 100%;
+}
+html body .main-container #space #navigator .scroll .first-index a, html body .main-container #space #navigator .scroll .secondary-index a, html body .main-container #space #navigator .scroll .third-index a {
+  display: block;
+  font-size: 14px;
+  line-height: 1.65;
+  padding: 7px 8px;
+  white-space: normal;
+  color: var(--theme-text-secondary);
+  text-decoration: none;
+}
+html body .main-container #space #navigator .scroll .first-index .toc-active, html body .main-container #space #navigator .scroll .secondary-index .toc-active, html body .main-container #space #navigator .scroll .third-index .toc-active {
+  color: var(--theme-color);
+  background: var(--theme-color-20);
+  border-radius: 6px;
+}
+html body .main-container #space #navigator .scroll .secondary-index a {
+  padding-left: 20px;
+}
+html body .main-container #space #navigator .scroll .third-index a {
+  padding-left: 32px;
+}
+html body .main-container #space #navigator .toc-toggle, html body .main-container #space #navigator .toc-collapse {
+  flex: 0 0 28px;
+  min-width: 28px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  color: var(--theme-text-secondary);
+  background: transparent;
+}
+html body .main-container #space #navigator .icp-beian {
+  position: static;
+  padding: 12px;
+  border-top: 1px solid var(--theme-header-border);
+}
+html body .main-container #fixed #right > div {
+  border: 1px solid var(--theme-header-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: none;
+}
+html body .index .main-main .main-content {
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+html body .index .main-main .main-content .article-list {
+  overflow: visible;
+}
+html body .index .main-main .main-content .i-article {
+  display: flex;
+  gap: 24px;
+  margin: 0 0 16px;
+  padding: 24px;
+  align-items: flex-start;
+  border: 1px solid var(--theme-header-border);
+  border-radius: 12px;
+  background: var(--theme-front-main-color);
+  box-shadow: none;
+}
+html body .index .main-main .main-content .i-article:first-of-type {
+  margin-top: 0;
+}
+html body .index .main-main .main-content .i-article .i-article-summary {
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+  overflow: visible;
+}
+html body .index .main-main .main-content .i-article .i-article-summary .i-article-title {
+  font-size: 20px;
+  line-height: 1.5;
+  min-height: 0;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: var(--theme-text-color);
+  scroll-margin-top: 0;
+}
+html body .index .main-main .main-content .i-article .i-article-summary .i-article-title a {
+  color: inherit;
+}
+html body .index .main-main .main-content .i-article .i-article-summary .i-article-excerpt {
+  font-size: 14px;
+  line-height: 1.75;
+  margin: 12px 0;
+  min-height: 0;
+}
+html body .index .main-main .main-content .i-article .i-article-summary .i-article-info {
+  margin-top: 12px;
+}
+html body .index .main-main .main-content .i-article .i-article-summary .i-article-info ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  white-space: normal;
+}
+html body .index .main-main .main-content .i-article .i-article-summary .i-article-info ul li {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  cursor: auto;
+}
+html body .index .main-main .main-content .i-article .i-article-summary .i-article-info ul li:hover {
+  transform: none;
+}
+html body .index .main-main .main-content .i-article .i-article-summary .i-article-info ul .category {
+  position: static;
+  color: var(--theme-color);
+  background: var(--theme-color-20);
+  padding: 2px 7px;
+  font-size: 13px;
+}
+html body .index .main-main .main-content .i-article .i-article-thumb {
+  flex: 0 0 144px;
+  width: 144px;
+  margin: 0;
+  order: 2;
+  border-radius: 8px;
+}
+html body .index .main-main .main-content .i-article .i-article-thumb a {
+  display: block;
+  height: auto;
+  margin: 0;
+}
+html body .index .main-main .main-content .i-article .i-article-thumb a img {
+  display: block;
+  width: 100%;
+  height: 108px;
+  min-height: 0;
+  max-height: none;
+  object-fit: cover;
+}
+html body .index .main-main .main-content .i-article .i-article-left {
+  order: 1;
+  margin: 0;
+}
+html body .mobile-toc {
+  display: none;
+}
+html body .main-bottom {
+  line-height: 1.8;
+  padding: 24px 24px calc(32px + env(safe-area-inset-bottom));
+  overflow-wrap: anywhere;
+}
+html body .fixed {
+  z-index: 30;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  gap: 8px;
+}
+html body .fixed button, html body .fixed #progress {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--theme-header-border);
+  border-radius: 10px;
+  box-shadow: var(--theme-shadow);
+  background: var(--theme-front-main-color);
+  color: var(--theme-text-secondary);
+  font-size: 13px;
+}
 
-/*## 平板电脑/Ipad竖屏，##768px - 1024px */
-/*
-  1580-1024大小的公共样式
-*/
-@media (min-width: 1024px) and (max-width: 1580px) {
-  html body .main-container .main-main {
-    width: 55%;
-    /* 文章推荐 */
+@media (hover: hover) and (pointer: fine) {
+  html body .index .main-main .main-content .i-article {
+    transition: box-shadow var(--theme-transition), transform var(--theme-transition);
   }
-  html body .main-container .main-main .recommend .list .swiper-slide {
-    width: calc(25% - 12px);
+  html body .index .main-main .main-content .i-article:hover {
+    box-shadow: var(--theme-shadow-lg);
+    transform: translateY(-2px);
+  }
+  html body .index .main-main .main-content .i-article .i-article-title a:hover {
+    color: var(--theme-color);
   }
 }
-/* 1024px以下的屏幕 */
-/*
-  1024已下的样式
-*/
-@media (max-width: 1024px) {
-  html {
-    min-width: unset;
+@media (min-width: 1280px) {
+  html body .main-header .right .menu {
+    gap: clamp(12px, 1.2vw, 24px);
   }
-  html body .main-container {
-    justify-content: center;
+  html body .main-header .right .menu > .menu-item:last-child > .sub-menu {
+    left: auto;
+    right: 0;
   }
-  html body .main-container .main-main {
-    margin-left: 0;
+  html body .main-header .right .menu > .menu-item:last-child > .sub-menu .sub-menu {
+    left: auto;
+    right: 100%;
+  }
+}
+@media (max-width: 1279px) {
+  html body .main-container #space {
+    display: none;
   }
   html body .main-header {
-    min-width: unset;
-    padding: 0 1rem 0 1.25rem;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--theme-bg-color);
+  }
+  html body .main-header .left {
+    flex: 1 1 0;
   }
   html body .main-header .daohang {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--theme-header-font-color);
+  }
+  html body .main-header .daohang .iconfont {
+    font-size: 24px;
+  }
+  html body .main-header .nav-backdrop {
     display: block;
-    font-size: 1.6rem;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+    background: rgba(20, 18, 15, 0.45);
+    z-index: 101;
+    cursor: default;
   }
   html body .main-header .right {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
     position: fixed;
-    top: 0;
-    left: -70%;
-    width: 60%;
+    z-index: 102;
+    inset: 0 auto 0 0;
+    width: min(86vw, 360px);
+    height: 100vh;
+    height: 100dvh;
+    padding: max(16px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 20px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background: var(--theme-sub-menu-bg-color);
-    padding: 1rem 0.7rem 1rem 0.7rem;
-    box-shadow: 0 12px 32px var(--theme-hover-shadow);
-    transition-property: all;
-    transition-duration: 0.3s;
-    overflow: auto;
+    box-shadow: var(--theme-shadow-lg);
+    transform: translateX(-110%);
+    visibility: hidden;
+    transition: none;
   }
-  html body .main-header .right::-webkit-scrollbar {
-    display: none;
+  html body .main-header .right .drawer-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+  }
+  html body .main-header .right .nav-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    color: var(--theme-text-color);
+    font-size: 28px;
   }
   html body .main-header .right .menu-left {
-    /*background-color: var(--theme-front-color);*/
-    /*border: 1px solid #f3f3f3;*/
-    margin: 0;
-    padding: 0 0.2rem;
+    flex: 0 0 auto;
     width: 100%;
-    /*&:hover{
-      box-shadow: 0 0 5px 2px var(--theme-color-20);
-      border-color: var(--theme-color);
-    }*/
-  }
-  html body .main-header .right .menu-left .search-div {
-    display: flex;
-    width: 100%;
-  }
-  html body .main-header .right .menu-left .search-div .iconfont {
-    display: none;
   }
   html body .main-header .right .menu-left .search-div .search {
-    height: 35px;
-    width: 100%;
-    flex-shrink: 0;
-    padding: 0 1rem 0 0.6rem;
-    color: var(--theme-sub-menu-font-color);
-  }
-  html body .main-header .right .menu-left .search-icon {
-    height: unset;
-    margin-right: 0.2rem;
-    line-height: normal;
-    color: var(--theme-sub-menu-font-color);
+    font-size: 16px;
   }
   html body .main-header .right .menu {
-    align-content: center;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
+    display: block;
+    height: auto;
     width: 100%;
-    height: unset;
+    padding: 0;
   }
   html body .main-header .right .menu .menu-item {
-    width: 100%;
+    height: auto;
     margin: 0;
-    box-sizing: border-box;
-    padding: 0.5rem 1rem;
-    color: var(--theme-sub-menu-font-color);
-    justify-content: space-between;
-    font-weight: lighter;
+    padding: 0;
+    display: flex;
     flex-wrap: wrap;
-    font-size: var(--theme-third-level-title);
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid var(--theme-header-border);
+    font-size: 16px;
+    white-space: normal;
   }
-  html body .main-header .right .menu .menu-item i {
-    line-height: normal;
+  html body .main-header .right .menu .menu-item > a {
+    flex: 1 1 0;
+    padding: 12px 0;
+    min-width: 0;
   }
-  html body .main-header .right .menu .menu-item span {
-    font-size: 1rem;
-  }
-  html body .main-header .right .menu {
-    /*
-      如果拥有子菜单
-    */
-  }
-  html body .main-header .right .menu .menu-item-has-children > a:after {
+  html body .main-header .right .menu .menu-item > a:after {
     display: none;
   }
-  html body .main-header .right .menu .menu-item-has-children .sub-menu {
+  html body .main-header .right .menu .menu-item .submenu-toggle {
+    display: block;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    font-size: 22px;
+    color: var(--theme-text-secondary);
+  }
+  html body .main-header .right .menu .menu-item .sub-menu {
+    position: static;
     display: none;
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+    min-width: 0;
+    padding: 0 0 8px 16px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+  html body .main-header .right .menu .menu-item .sub-menu .menu-item {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+  }
+  html body .main-header .right .menu .menu-item.submenu-open > .sub-menu {
+    display: block;
   }
   html body .main-header .right .menu .read-mode {
-    position: absolute !important;
-    display: none;
-    top: 1rem;
-    z-index: 50;
-    right: 12px;
-    margin-top: 0;
-    height: fit-content;
-    width: fit-content;
-    color: var(--theme-front-color);
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 0;
   }
-  html body .main-header .right .menu .read-mode img {
-    width: 1.2rem;
+  html body .main-header .right .menu .read-mode .mode-label {
+    display: inline;
+  }
+  html body .mobile-toc {
+    display: block;
+    margin: 24px 0;
+    border: 1px solid var(--theme-header-border);
+    border-radius: 10px;
+    background: var(--theme-front-color);
+  }
+  html body .mobile-toc summary {
+    padding: 12px 16px;
+    min-height: 48px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  html body .mobile-toc nav {
+    padding: 0 16px 16px;
+    max-height: min(50vh, 400px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  html body .mobile-toc ul {
+    list-style: none;
+    margin: 0;
     padding: 0;
   }
-  html body .main-container .main-main .non-result {
-    padding: 0.8rem 1rem;
+  html body .mobile-toc a {
+    display: block;
+    padding: 8px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    text-decoration: none;
+    color: var(--theme-text-secondary);
   }
-  html body .main-container .main-main .main-content .main-article .container-image img {
-    max-width: 100%;
+  html body .mobile-toc .secondary-index {
+    padding-left: 16px;
+  }
+  html body .mobile-toc .third-index {
+    padding-left: 32px;
+  }
+  html.nav-open {
+    overflow: hidden;
+  }
+  html.nav-open body {
+    position: fixed;
+    top: var(--nav-scroll-top, 0px);
+    width: 100%;
+  }
+  html.nav-open .main-header .right {
+    visibility: visible;
+    transform: translateX(0);
   }
 }
-/* ##平板电脑/Ipad竖屏，##768px - 1024px*/
-/*
-  768-1024px的屏幕
-*/
-@media (min-width: 768px) and (max-width: 1024px) {
-  html {
-    min-width: unset;
-  }
-  html body .password img {
-    width: 50%;
-  }
-  html body .main-container .main-main {
-    width: 80%;
-    /* 文章推荐 */
-  }
-  html body .main-container .main-main .recommend .list .swiper-slide {
-    width: calc(25% - 12px);
-  }
-  html body .main-container #space, html body .main-container #fixed {
+@media (max-width: 1023px) {
+  html body .main-container #fixed {
     display: none;
   }
 }
-/*低分辨率平板*/
-/*
-  小平板
-*/
-@media (min-width: 481px) and (max-width: 767px) {
-  html {
-    min-width: unset;
-  }
-  html body .password img {
-    width: 45%;
-  }
-  html body .main-container .main-main {
-    width: 95%;
-    /* 文章推荐 */
-  }
-  html body .main-container .main-main .recommend .list .swiper-slide {
-    width: calc(33.3% - 12px);
-  }
-  html body .main-container #space, html body .main-container #fixed {
-    display: none;
-  }
-}
-/*手机*/
-/*
-  手机
-*/
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   :root {
-    --theme-first-level-title: 1.25rem;
-    --theme-text: 0.95rem;
-    --theme-secondary: 0.85rem;
-    --theme-text-mini: 0.75rem;
-    --theme-text-more-mini: 0.75rem;
-    --theme-secondary-level-title: 1.05rem;
-    --theme-third-level-title: 1rem;
-    --theme-fourth-level-title: 0.95rem;
-    --theme-header-size: 1.15rem;
-    --theme-margin-bottom: 1.1rem;
-    --theme-margin-bottom-max: 1.2rem;
-  }
-  html {
-    min-width: unset;
-  }
-  html body h1 {
-    margin-top: 0.6rem;
-    line-height: 1.5;
-  }
-  html body #category {
-    padding-left: 0 !important;
+    --theme-header-height: 56px;
   }
   html body .main-header {
-    height: 55px;
-    border-top: 1px solid var(--theme-header-border);
-    border-bottom: none;
-    box-shadow: var(--theme-shadow);
+    padding: 0 max(16px, env(safe-area-inset-left));
+    gap: 12px;
   }
-  html body .main-header .daohang {
-    font-size: 1.45rem;
+  html body .main-header .left a.logo {
+    height: 28px;
   }
-  html body .main-header .right .menu-left .menu .menu-item {
-    font-size: var(--theme-text);
-  }
-  html body .password img {
-    width: 60%;
+  html body .main-header .left a.logo .title {
+    font-size: 17px;
   }
   html body .main-container {
-    margin-top: 55px;
-  }
-  html body .main-container .div-info {
-    padding: 0.1rem 1rem 0.85rem 1.1rem;
+    padding: 0 16px;
+    margin-top: calc(var(--theme-header-height) + 16px);
+    gap: 0;
   }
   html body .main-container .main-main {
     width: 100%;
+    max-width: none;
   }
-  html body .main-container .main-main .non-result {
-    margin-top: 1rem;
+  html body .main-container .main-main .main-content, html body .main-container .main-main .div-info, html body .main-container .main-main .non-result {
+    padding: 20px 16px;
   }
-  html body .main-container .main-main .non-result .in {
-    font-size: var(--theme-header-size);
+  html body .main-container .main-main .main-content > h1 {
+    margin-top: 20px;
   }
-  html body .main-container .main-main .non-result .in .belong {
-    font-size: inherit;
-  }
-  html body .main-container .main-main .non-result {
-    /* 文章推荐 */
-  }
-  html body .main-container .main-main .non-result .recommend .list .swiper-slide {
-    width: calc(50% - 12px);
-  }
-  html body .main-container .main-main .main-bottom {
-    padding: 0 0.3rem;
-  }
-  html body .main-container .main-main .main-content {
-    padding: 1.1rem 1rem 0 1rem;
+  html body .main-container .main-main .main-content .main-article {
+    font-size: 16px;
   }
   html body .main-container .main-main .main-content .main-article h2 {
-    font-weight: bold !important;
+    font-size: 21px;
   }
   html body .main-container .main-main .main-content .main-article h3 {
-    font-weight: bold;
+    font-size: 19px;
   }
-  html body .main-container .main-main .main-content .main-article h4 {
-    font-weight: bold;
+  html body .main-container .main-main .div-info .comment-form .comment-form-main .comment-container {
+    flex-direction: column;
+    gap: 14px;
   }
-  html body .main-container .main-main .main-content .breadcrumb {
-    padding-bottom: 0.75rem;
+  html body .main-container .main-main .div-info .comment-form .comment-form-main .comment-container label {
+    flex-basis: auto;
+    width: 100%;
   }
-  html body .main-container .main-main .main-content .dynamic ul.list .tab {
-    font-size: var(--theme-text);
+  html body .main-container .main-main .div-info .comment_list ul.children {
+    padding-left: 12px;
   }
-  html body .main-container #space, html body .main-container #fixed {
-    display: none;
+  html body .main-container .main-main .recommend .list .swiper-slide {
+    width: calc(50% - 12px);
   }
   html body .index .main-main .main-content {
-    padding: 1rem 0.9rem 0 0.9rem;
+    padding: 0;
   }
   html body .index .main-main .main-content .i-article {
-    margin-top: 0.9rem;
-    padding-bottom: 0.9rem;
-  }
-  html body .index .main-main .main-content .i-article h2 {
-    margin: 0;
-    min-height: 50px;
-  }
-  html body .index .main-main .main-content .i-article:first-of-type {
-    margin-top: 1rem;
-  }
-  html body .index .main-main .main-content .i-article .i-article-thumb {
-    width: 30%;
-    margin-left: 0.5rem;
-    /*
-      缩略图最小高度
-    */
-  }
-  html body .index .main-main .main-content .i-article .i-article-thumb a {
-    display: flex;
-    align-items: flex-start;
-    height: 90%;
-  }
-  html body .index .main-main .main-content .i-article .i-article-thumb a img {
-    min-height: 64px;
-    max-height: 75px;
-    height: 100%;
-  }
-  html body .index .main-main .main-content .i-article .i-article-left {
-    margin-right: 0.5rem;
-    margin-left: 0;
-  }
-  html body .index .main-main .main-content .i-article .i-article-summary {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 16px;
+    gap: 14px;
+    margin: 0 0 12px;
   }
   html body .index .main-main .main-content .i-article .i-article-summary .i-article-title {
-    font-size: var(--theme-text);
-  }
-  html body .index .main-main .main-content .i-article .i-article-summary .i-article-title a {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.55;
+    font-size: 18px;
+    line-height: 1.5;
   }
   html body .index .main-main .main-content .i-article .i-article-summary .i-article-excerpt {
     display: none;
   }
   html body .index .main-main .main-content .i-article .i-article-summary .i-article-info {
-    margin-top: 0.25rem;
+    margin-top: 10px;
   }
-  html body .index .main-main .main-content .i-article .i-article-summary .i-article-info ul li {
-    font-size: var(--theme-text-mini);
+  html body .index .main-main .main-content .i-article .i-article-summary .i-article-info ul {
+    gap: 6px 8px;
   }
-  html body .index .main-main .main-content .i-article .i-article-summary .i-article-info ul li:nth-child(3) {
-    padding-left: 0;
-  }
-  html body .index .main-main .main-content .i-article .i-article-summary .i-article-info .category {
+  html body .index .main-main .main-content .i-article .i-article-summary .i-article-info ul .category, html body .index .main-main .main-content .i-article .i-article-summary .i-article-info ul #author {
     display: none;
   }
-  html body {
-    /*
-      如果有动态页面加载
-    */
+  html body .index .main-main .main-content .i-article .i-article-thumb {
+    flex-basis: 96px;
+    width: 96px;
   }
-  html body .index .main-main .hasDynamic {
-    padding-top: 0;
+  html body .index .main-main .main-content .i-article .i-article-thumb a img {
+    height: 72px;
   }
-  html body #author {
+  html body .fixed #progress {
     display: none;
   }
-  html body {
-    /*评论区*/
+  html body .main-bottom {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 13px;
   }
-  html body .main-container .main-main .div-info .comment-form .comment-form-main .comment-textarea .emoji-list {
-    width: 80%;
+}
+@media (max-width: 359px) {
+  html body .main-container {
+    padding: 0 10px;
   }
+  html body .index .main-main .main-content .i-article {
+    padding: 12px;
+    gap: 12px;
+  }
+}
+.dark {
+  color-scheme: dark;
+}
+.dark .main-header .logo img {
+  background: #FAF9F5;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+html body .empty-state .main-main .main-content {
+  text-align: center;
+  padding: 40px 24px;
+}
+html body .empty-state .main-main .main-content > img {
+  display: block;
+  width: min(240px, 70%);
+  height: auto;
+  margin: 0 auto 24px;
+}
+html body .empty-state .main-main .main-content p {
+  color: var(--theme-text-secondary);
+}
+html body .empty-state .main-main .main-content form {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  max-width: 480px;
+  margin: 24px auto;
+}
+html body .empty-state .main-main .main-content input {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--theme-header-border);
+  background: var(--theme-front-main-color);
+  font-size: 16px;
+}
+html body .empty-state .main-main .main-content button {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 0;
+  background: var(--theme-color);
+  color: var(--theme-on-accent);
+}
+
+/* Text on an accent surface uses a dedicated foreground in both modes. */
+html body .main-container #fixed #right .author .tag,
+html body .main-container .main-main .div-info .comment-form .comment-form-footer button:hover {
+  color: var(--theme-on-accent);
+}
+
+html body .main-container .main-main .main-content .pagination a:hover, html body .main-container .main-main .main-content .pagination span.current {
+  color: var(--theme-on-accent);
+}
+
+/* Prism's bundled light palette otherwise paints black text on our dark pre. */
+html body .main-container .main-main .main-content .main-article pre {
+  background: var(--theme-pre-code-bg);
+  color: #F5F2EA;
+  font-size: 14px;
+  line-height: 1.7;
+  padding: 20px;
+  text-shadow: none;
+}
+html body .main-container .main-main .main-content .main-article pre code, html body .main-container .main-main .main-content .main-article pre code[class*=language-] {
+  color: #F5F2EA;
+  font-size: inherit;
+  text-shadow: none;
+  background: transparent;
+  white-space: pre;
+}
+html body .main-container .main-main .main-content .main-article pre .token {
+  color: #F5F2EA;
+  background: transparent;
+  text-shadow: none;
+}
+html body .main-container .main-main .main-content .main-article pre .token.comment, html body .main-container .main-main .main-content .main-article pre .token.prolog, html body .main-container .main-main .main-content .main-article pre .token.doctype, html body .main-container .main-main .main-content .main-article pre .token.cdata {
+  color: #B8AFA0;
+}
+html body .main-container .main-main .main-content .main-article pre .token.punctuation, html body .main-container .main-main .main-content .main-article pre .token.operator, html body .main-container .main-main .main-content .main-article pre .token.entity, html body .main-container .main-main .main-content .main-article pre .token.url {
+  color: #E7DCC9;
+}
+html body .main-container .main-main .main-content .main-article pre .token.property, html body .main-container .main-main .main-content .main-article pre .token.tag, html body .main-container .main-main .main-content .main-article pre .token.boolean, html body .main-container .main-main .main-content .main-article pre .token.number, html body .main-container .main-main .main-content .main-article pre .token.constant, html body .main-container .main-main .main-content .main-article pre .token.symbol {
+  color: #E6B98A;
+}
+html body .main-container .main-main .main-content .main-article pre .token.selector, html body .main-container .main-main .main-content .main-article pre .token.attr-name, html body .main-container .main-main .main-content .main-article pre .token.string, html body .main-container .main-main .main-content .main-article pre .token.char, html body .main-container .main-main .main-content .main-article pre .token.builtin, html body .main-container .main-main .main-content .main-article pre .token.inserted {
+  color: #B8D3A0;
+}
+html body .main-container .main-main .main-content .main-article pre .token.atrule, html body .main-container .main-main .main-content .main-article pre .token.attr-value, html body .main-container .main-main .main-content .main-article pre .token.keyword {
+  color: #D4B2E8;
+}
+html body .main-container .main-main .main-content .main-article pre .token.function, html body .main-container .main-main .main-content .main-article pre .token.class-name {
+  color: #A9CBE8;
+}
+html body .main-container .main-main .main-content .main-article pre .token.regex, html body .main-container .main-main .main-content .main-article pre .token.important, html body .main-container .main-main .main-content .main-article pre .token.variable, html body .main-container .main-main .main-content .main-article pre .token.deleted {
+  color: #EAC4A5;
+}
+
+html body .main-container .main-main .main-content footer .article-footer .donate .donate-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: var(--theme-color);
+  color: var(--theme-on-accent);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
 }

@@ -15,12 +15,12 @@ function nicen_theme_claude_color_overrides() {
 	if ( ! is_array( $desination_configs ) ) {
 		return;
 	}
-	$desination_configs['document_theme_color']         = '#C75F2C';                  // 赤陶主色
+	$desination_configs['document_theme_color']         = '#B14D24';                  // 赤陶主色
 	$desination_configs['document_theme_bg_color']      = '#FAF9F5';                  // 暖白底
 	$desination_configs['document_header_bg_color']     = 'rgba(250, 249, 245, 0.85)';// 磨砂暖白
 	$desination_configs['document_header_font_color']   = '#1F1E1B';                  // 暖深棕
 	$desination_configs['document_sub_menu_bg_color']   = '#FFFFFF';
-	$desination_configs['document_sub_menu_font_color'] = 'rgba(31, 30, 27, 0.65)';
+	$desination_configs['document_sub_menu_font_color'] = '#625D54';
 	$desination_configs['document_header_border_color'] = '#E8E5DD';                  // 暖灰边
 	$desination_configs['document_header_shadow_color'] = 'rgba(31, 30, 27, 0.04)';
 	$desination_configs['document_footer_font_color']   = '#1F1E1B';
@@ -50,9 +50,9 @@ function nicen_theme_load_source() {
 	wp_enqueue_script( 'enquire', $url . '/assets/theme/enquire.js', false );
 
 
-	wp_enqueue_script( 'main-sub', $url . '/common/inline/main.js', array(), filemtime( $root . '/common/inline/main.js' ), false );
+	wp_enqueue_script( 'main-sub', $url . '/common/inline/main.js', array( 'jquery' ), filemtime( $root . '/common/inline/main.js' ), false );
 
-	wp_enqueue_script( 'main', $url . '/common/main.js', array(), filemtime( $root . '/common/main.js' ), false );
+	wp_enqueue_script( 'main', $url . '/common/main.js', array( 'main-sub' ), filemtime( $root . '/common/main.js' ), false );
 
 
 	/*主题的style.css*/
@@ -69,7 +69,7 @@ function nicen_theme_load_source() {
 	 * */
 	if ( is_single() ) {
 		if ( nicen_theme_config( "document_single_show_catalog", false ) ) {
-			wp_enqueue_script( 'main-monitor', $url . '/common/inline/monitor.js', array(), filemtime( $root . '/common/inline/monitor.js' ), false );
+			wp_enqueue_script( 'main-monitor', $url . '/common/inline/monitor.js', array( 'main' ), filemtime( $root . '/common/inline/monitor.js' ), false );
 		}
 		if ( is_active_sidebar( 'content_down' ) ) {
 			wp_enqueue_script( 'page-swiper', $url . '/common/inline/swiper.js', array(), filemtime( $root . '/common/inline/swiper.js' ), false );
@@ -79,12 +79,12 @@ function nicen_theme_load_source() {
 
 	if ( is_home() ) {
 		if ( nicen_theme_config( "document_show_left_nav", false ) ) {
-			wp_enqueue_script( 'main-monitor', $url . '/common/inline/monitor.js', array(), filemtime( $root . '/common/inline/monitor.js' ), false );
+			wp_enqueue_script( 'main-monitor', $url . '/common/inline/monitor.js', array( 'main' ), filemtime( $root . '/common/inline/monitor.js' ), false );
 		}
 	}
 	if ( is_category() || is_tag() || is_search() ) {
 		if ( nicen_theme_config( "document_show_else_left_nav", false ) ) {
-			wp_enqueue_script( 'main-monitor', $url . '/common/inline/monitor.js', array(), filemtime( $root . '/common/inline/monitor.js' ), false );
+			wp_enqueue_script( 'main-monitor', $url . '/common/inline/monitor.js', array( 'main' ), filemtime( $root . '/common/inline/monitor.js' ), false );
 		}
 	}
 	/*

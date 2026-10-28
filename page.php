@@ -16,7 +16,7 @@ if ( post_password_required() ) {
 	get_template_part( './template/index/password' );
 } else {
 	?>
-    <main class="main-container">
+    <main id="main-content" tabindex="-1" class="main-container">
         <!--  文章  -->
         <div class="main-main">
             <article class="main-content">

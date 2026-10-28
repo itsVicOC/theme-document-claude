@@ -759,7 +759,7 @@ define( "CONFIG", [
 	'document_thumbnail_default'  => get_theme_root_uri() . '/destination/assets/images/default.png',
 	"document_Gravatar"           => 'gravatar.loli.net/avatar',
 	//默认替换的gavatar源
-	"document_theme_color"        => '#C75F2C',
+	"document_theme_color"        => '#B14D24',
 	"document_show_copyright"     => 1,
 	//主题色
 	"document_searchnum"          => 1,
@@ -834,7 +834,7 @@ define( "CONFIG", [
 	'document_header_bg_color'       => 'rgba(250, 249, 245, 0.85)',
 	'document_header_font_color'     => '#1F1E1B',
 	'document_sub_menu_bg_color'     => '#FFFFFF',
-	'document_sub_menu_font_color'   => 'rgba(31, 30, 27, 0.65)',
+	'document_sub_menu_font_color'   => '#625D54',
 	"document_logo_url"              => get_theme_root_uri() . '/destination/assets/images/logo.png',
 	//主题logo
 	'document_header_border_color'   => '#E8E5DD',

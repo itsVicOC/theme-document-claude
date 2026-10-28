@@ -1,421 +1,77 @@
-/*
-* @author 友人a丶
-* @date 2022-08-12
-* 
-* */
-
-
-/*
-* 防止子容器触发父容器的滚动
-* */
-$.fn.scrollUnique = function () {
-    return $(this).each(function () {
-        var eventType = 'mousewheel';
-        // 火狐是DOMMouseScroll事件
-        if (document.mozHidden !== undefined) {
-            eventType = 'DOMMouseScroll';
-        }
-        $(this).on(eventType, function (event) {
-
-            // 一些数据
-            var scrollTop = this.scrollTop,
-                scrollHeight = this.scrollHeight,
-                height = this.clientHeight;
-
-            var delta = (event.originalEvent.wheelDelta) ? event.originalEvent.wheelDelta : -(event.originalEvent.detail || 0);
-
-            if ((delta > 0 && scrollTop <= delta) || (delta < 0 && scrollHeight - height - scrollTop <= -1 * delta)) {
-                // IE浏览器下滚动会跨越边界直接影响父级滚动，因此，临界时候手动边界滚动定位
-                this.scrollTop = delta > 0 ? 0 : scrollHeight;
-                // 向上滚 || 向下滚
-                event.preventDefault();
-            }
-        });
-    });
-};
-
-
+/* Desktop catalogue only. The mobile <details> uses native anchors. */
 $(function ($) {
+    const navigator = document.getElementById('navigator');
+    if (!navigator) return;
+    const scroller = navigator.querySelector('.scroll');
+    const desktop = window.matchMedia('(min-width: 1280px)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    /* 阅读导航栏初始化 */
-    (function () {
-        /*
-        * 给目录添加展开伸缩图标
-        * */
-        $(`[data-pid]`).each(function () {
-
-            const that = $(this);
-            const parentId = that.data('pid');
-
-            if ($(`[data-parent=${parentId}]`).length) {
-                that.children('div').prepend('<i class="iconfont icon-xiangxiazhankai1"></i>');
-            }
-        })
-
-    })();
-
-
-    /*
-    * 屏蔽文章导航滚动事件向上传递
-    * */
-    (function () {
-        $('.scroll').scrollUnique()
-            .on('scroll', function (e) {
-                e.stopPropagation(); //停止向上传递事件
-            });
-    })();
-
-    //防止重复触发目录滚动
-    //正在滚动是 左侧文章目录不重复滚动
-    let isScroll = false;
-
-
-    /*阅读目录初始化*/
-    (function () {
-
-        /*导航跳转*/
-        function goto(Index) {
-
-
-            let tops = Index[0].offsetTop;
-
-            line.height(Index.height());//初始化滚动条高度
-            line.css("top", `${tops}px`);//索引条开始滑动
-
-            /*
-            * 判断外层容器是否需要滚动
-            * */
-
-            /*向下*/
-            let scroll = $('.scroll').get(0); //可滚动的导航
-
-            /*
-            * 文章滚动时，目录自动翻页向下、向上
-            * */
-            if (tops >= (scroll.scrollTop + scroll.offsetHeight)) {
-
-                /*防止重复触发滚动*/
-                if (isScroll) {
-                    return;
-                }
-
-                /*标记正在滚动的状态*/
-                isScroll = true;
-
-
-                $(scroll).animate({scrollTop: tops - 100}, 200, function () {
-                    isScroll = false;
-                })
-            }
-
-
-            /*向上*/
-            if (tops < scroll.scrollTop) {
-
-                /*防止重复触发滚动*/
-                if (isScroll) {
-                    return;
-                }
-                isScroll = true;
-
-                $(scroll).animate({scrollTop: ((tops - scroll.offsetHeight) < 0 ? 0 : tops - scroll.offsetHeight + 100)}, 200, function () {
-                    isScroll = false;
-                })
-            }
-
-
-            /*
-            * 判断文章是否需要滚动
-            * */
-            if (!needScroll) {
-
-                /*
-                * 目录跟随文章
-                * 跟随完毕，恢复文章跟随目录点击
-                * */
-                needScroll = true;
-                return;
-            }
-
-
-            let anchor = main.find(Index.find('div a').attr("href"));
-
-            if (anchor.length !== 0) {
-
-
-                /*
-                * 标记文章正在滚动
-                * 屏蔽scroll监听事件
-                * */
-                watchScroll = false;//屏蔽滚动监听
-
-                let top = anchor.getTop() - ($(".isIndex").length > 0 ? 55 : 15);
-
-                /*
-                * 滚动锚点标记
-                * */
-                main.animate({scrollTop: top}, 200, function () {
-                    watchScroll = true;
-                });
-
-            }
-
+    function childrenOf(item) {
+        return [...navigator.querySelectorAll('[data-parent]')].filter(child => child.dataset.parent === item.dataset.pid);
+    }
+    function collapse(item, collapsed) {
+        const button = item.querySelector(':scope > div > .toc-toggle');
+        if (button) {
+            button.setAttribute('aria-expanded', String(!collapsed));
+            button.textContent = collapsed ? '+' : '−';
         }
-
-        /* 重置状态 */
-        function clear() {
-            $('.main-container .main-left .first-index').css('color', '');//移除所有一级索引的颜色
-            $('.main-container .main-left .secondary-index').css('color', '');//移除所有二级索引的颜色
-            $('.main-container .main-left .third-index').css('color', '');//移除所有三级索引的颜色
-        }
-
-
-        /* 绑定文章目录点击的事件 */
-        $("body").on("click", '.first-index', function () {
-            clear();
-            goto($(this));
-            $(this).css('color', 'var(--theme-color)');//被选中的一级索引变为主题色
-        }).on("click", '.secondary-index', function () {
-            clear();
-            goto($(this));
-            $(this).css('color', 'var(--theme-color)');//被选中的二级索引变为主题色
-            $(this).parent().parent().prev('.first-index').css('color', 'var(--theme-color)');//被选中的一级索引变为主题色
-        }).on("click", '.third-index', function () {
-            clear();
-            goto($(this));
-            $(this).css('color', 'var(--theme-color)');//被选中的三级索引变为主题色
-            $(this).parent().parent().prev('.secondary-index').css('color', 'var(--theme-color)');//被选中的二级索引变为主题色
-            $(this).parent().parent().parent().parent().prev('.first-index').css('color', 'var(--theme-color)');//被选中的二级索引变为主题色
-        })
-
-
-        /*
-         * 初始化导航栏滚动条
-         * */
-
-        //文章跟随目录点击
-        let needScroll = true;  //目录被点击，文章是否滚动
-
-        //目录跟随文章滚动
-        let watchScroll = true; //是否需要监听文章滚动
-
-        let line = $(".main-container .line");
-
-        let main = $('html');
-        //获取第一个一级索引标题的DOM
-        let firstIndex = $('.main-container .main-left li div:first');
-
-
-        //文章跟随目录点击
-        needScroll = false;//屏蔽第一次滚动，标记文章不需要进行滚动
-        firstIndex.trigger('click');//触发默认的第一个目录的点击事件
-
-        /*
-        * 渲染完毕后显示，防抖动闪烁
-        * */
-        $('.main-left').css('opacity', 1);
-
-        /*
-        * 内容滚动同步导航栏
-        * */
-        $(window).on('scroll', function () {
-
-            /*
-            * 屏蔽点击滚动时的事件监听
-            * 如果文章目录被点击后，文章正在滚动
-            * */
-            if (!watchScroll) return;
-
-
-            let thats = main;
-            let top = thats.get(0).scrollTop;
-            let collects = thats.find(".main-content").find("h1,h2,h3,h4");
-            let position = null;
-
-            /*
-            * 循环判断
-            * */
-            for (let i = 0; i < collects.length; i++) {
-
-                /*
-                * 获取循环的jq对象
-                * */
-                let that = collects.eq(i);
-
-                /*
-                * 无锚点，挑出本次循环
-                * */
-                if (!that.attr('id')) {
-                    continue;
-                }
-
-                /*
-                * 获取屏幕已经滚动的高度
-                * */
-                let domTop = that.getTop() - 75;
-
-                /*
-                * 当前阅读的是最靠近顶部的前一个标题
-                * */
-                if (domTop > top) {
-                    /*
-                    * 特殊处理开始、结尾的目录
-                    * */
-                    if (i != 0) {
-                        position = i - 1;
-                    } else {
-                        position = i;
-                    }
-
-                    break;
-                }
-
-            }
-
-
-            /*
-            * 如果不判断，会导致needScroll不会重置
-            * 因为页面底部已经没有标签了。
-            * */
-            if (position === null) position = collects.length - 1;
-
-            let parent = $("a[href='#" + collects.eq(position).attr("id") + "']").parent();
-            needScroll = false;//标记文章不需要跟随目录的点击而滚动
-
-            /* 不显示的时候不处理 */
-            if (parent.parent().parent().css("display") !== "none") {
-                parent.trigger('click');
-            }
-
+        childrenOf(item).forEach(child => {
+            child.hidden = collapsed;
+            collapse(child, collapsed);
         });
+    }
+    navigator.querySelectorAll('li[data-pid]').forEach(item => {
+        if (!childrenOf(item).length) return;
+        const row = item.querySelector(':scope > div');
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'toc-toggle';
+        button.textContent = '−';
+        button.setAttribute('aria-label', '展开或收起下级章节');
+        button.setAttribute('aria-expanded', 'true');
+        row.prepend(button);
+        button.addEventListener('click', () => collapse(item, button.getAttribute('aria-expanded') === 'true'));
+    });
+    const collapseAll = navigator.querySelector('.toc-collapse');
+    if (collapseAll) collapseAll.addEventListener('click', () => {
+        const collapsed = collapseAll.getAttribute('aria-expanded') === 'true';
+        navigator.querySelectorAll('li[data-pid]').forEach(item => collapse(item, collapsed));
+        collapseAll.setAttribute('aria-expanded', String(!collapsed));
+    });
 
-    })();
-
-
-    /*
-    * 监控阅读位置
-    * */
-    (function () {
-
-
-        let navigator = $('#navigator'); //文章导航
-        let space = $('#space');//目录容器
-
-        /*
-        * 判断是否存在文章导航
-        * 记录数据
-        * */
-        if (navigator.length > 0) {
-
-            let pos = space.position();
-
-            navigator.css('left', pos.left);
-            navigator.css('top', space.getTop());
-            navigator.show();
-
-            /*
-            * 跟随屏幕大小变化，调整目录的位置
-            * */
-            enquire.register("screen and (min-width:1024px)", {
-                /*屏幕大于1024时监听屏幕大小，更新目录导航位置*/
-                match() {
-                    $(window).on("resize", function () {
-                        navigator.css("left", space.position().left)
-                    })
-                },
-                /*屏幕小于1024时取消监听屏幕大小*/
-                unmatch() {
-                    $(window).off("resize", function () {
-                        navigator.css("left", space.position().left)
-                    });
-                }
-            });
-        }
-    })();
-
-
-    /*
-    * 文章踩、文章点赞
-    * */
-    (function () {
-
-        $('.icp-beian div').click(function () {
-
-            /*
-            * 判断点赞的是哪一个
-            * */
-            if ($('.icp-beian div').index(this) == 0) {
-                /* 点赞  */
-                let that = $(this);
-                $.post("/?document_nice=" + Current, function () {
-                    that.find('span').text(parseInt(that.find('span').text()) + 1);
-                });
-            } else {
-                /* 踩 */
-                let that = $(this);
-                $.post("/?document_bad=" + Current, function () {
-                    that.find('span').text(parseInt(that.find('span').text()) + 1);
-                });
-            }
-
+    let pending = false;
+    function update() {
+        pending = false;
+        if (!desktop.matches || !scroller) return;
+        const links = [...scroller.querySelectorAll('a[href^="#"]')];
+        const headings = links.map(link => document.getElementById(decodeURIComponent(link.hash.slice(1))));
+        const offset = document.querySelector('.main-header').getBoundingClientRect().height + 24;
+        let active = -1;
+        headings.forEach((heading, index) => {
+            if (heading && (active === -1 || heading.getBoundingClientRect().top <= offset)) active = index;
         });
-    })();
-
-
-    /*
-    * 文章踩、文章点赞
-    * */
-    (function () {
-
-
-        /* handle处理展开、收缩 */
-        const handle = (elem, status = null) => {
-            /* 选取数据 */
-            const that = $(elem)
-            const parentId = that.parent().parent().data('pid');
-            const child = $(`[data-parent=${parentId}]`);
-            /* 显示和隐藏 */
-            if ((that.hasClass('collapse') && status === null) || status) {
-                /* 处理 */
-                that.removeClass('collapse');
-                /* 处理下级 */
-                child.show(100)
-                    .find('.iconfont')
-                    .each((o, m) => {
-                        handle(m, true)
-                    });
-            } else {
-                that.addClass('collapse');
-                /* 处理下级 */
-                child.hide(100)
-                    .find('.iconfont')
-                    .each((o, m) => {
-                        handle(m, false)
-                    });
-            }
-        }
-
-        /* 监控点击 */
-        $('#space .scroll .iconfont').click(function (e) {
-            handle(this);
-            e.stopPropagation();
+        links.forEach((link, index) => {
+            link.classList.toggle('toc-active', index === active);
+            if (index === active) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
         });
+        const link = links[active];
+        if (!link || !link.getClientRects().length) return;
+        const bounds = link.getBoundingClientRect(), frame = scroller.getBoundingClientRect();
+        if (bounds.top < frame.top) scroller.scrollTop -= frame.top - bounds.top + 12;
+        else if (bounds.bottom > frame.bottom) scroller.scrollTop += bounds.bottom - frame.bottom + 12;
+    }
+    function queueUpdate() { if (!pending) { pending = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', queueUpdate, { passive: true });
+    window.addEventListener('resize', queueUpdate, { passive: true });
+    window.addEventListener('load', queueUpdate, { once: true });
+    // Dynamic pagination and category tabs can add catalogue entries.
+    if (scroller) new MutationObserver(queueUpdate).observe(scroller, { childList: true, subtree: true });
+    update();
 
-        /* 批量展开和收缩 */
-        $('.main-top .icon-daohang-caidan').click(function () {
-            /* 记录 */
-            const that = $(this)
-            const collapse = that.hasClass('collapse');
-            /* 批量展开 */
-            $('.first-index > .iconfont').each((i, m) => {
-                handle(m, collapse);
-            });
-            /* 修改状态 */
-            if (collapse) {
-                that.removeClass('collapse');
-            } else {
-                that.addClass('collapse');
-            }
-        })
-    })();
+    $('.icp-beian div').on('click', function () {
+        const action = $(this).index() === 0 ? 'document_nice' : 'document_bad';
+        const target = $(this).find('.number');
+        $.post(`${HOME}/?${action}=${Current}`, () => target.text((parseInt(target.text(), 10) || 0) + 1));
+    });
 });

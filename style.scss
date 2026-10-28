@@ -7,7 +7,7 @@ Theme URI: https://nicen.cn
 Author: 友人a丶
 Author URI: https://nicen.cn
 Description: 一个基于文档类型的博客主题，更加方便的记录、查询学习笔记
-Version: 1.0
+Version: 1.1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: Document
@@ -30,14 +30,5 @@ Tags: 文档,自适应,主题切换,阅读进度跟随
 @import "assets/extra/common.scss";
 /*正常的所有样式*/
 @import "assets/extra/normal.scss";
-/*## 平板电脑/Ipad竖屏，##768px - 1024px */
-@import "assets/extra/w-1024-1580.scss";
-/* 1024px以下的屏幕 */
-@import "assets/extra/w-1024.scss";
-/* ##平板电脑/Ipad竖屏，##768px - 1024px*/
-@import "assets/extra/w-768-1024.scss";
-/*低分辨率平板*/
-@import "assets/extra/w-480-767.scss";
-/*手机*/
-@import "assets/extra/w-480.scss";
-
+/* Unified layout and component refinements, including all breakpoints. */
+@import "assets/extra/responsive.scss";

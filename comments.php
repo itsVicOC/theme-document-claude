@@ -30,6 +30,7 @@ if ( nicen_theme_showComments() ) {
 		$avatar   = $isLogin ? ( get_avatar_url( $adminUserInfo->ID ) ?? $default ) : $default;
 
 		$reply_to_id = isset( $_GET['replytocom'] ) ? (int) $_GET['replytocom'] : false;
+		$comment = null;
 
 		if ( $reply_to_id ) {
 			$comment = get_comment( $reply_to_id );
@@ -73,7 +74,8 @@ if ( nicen_theme_showComments() ) {
                     <input type="hidden" name="comment_post_ID" value="<?php echo get_the_ID(); ?>"
                            id="comment_post_ID">
                     <div class="comment-textarea">
-                        <textarea id="comment_content" name="comment" maxlength="65525"
+                        <label class="screen-reader-text" for="comment_content">评论内容</label>
+                        <textarea id="comment_content" name="comment" maxlength="65525" required
                                   placeholder="三言两语,安慰自己,冷言冷语,坚持自己" rows="5"
                                   class="comment-content"></textarea>
 
@@ -84,15 +86,15 @@ if ( nicen_theme_showComments() ) {
                     </div>
 
                     <div class="comment-container">
-                        <input placeholder="昵称" name="author" type="text" class="comment-name"
+                        <label for="comment-author">昵称<input id="comment-author" placeholder="你的昵称" name="author" type="text" autocomplete="nickname" class="comment-name"
                                value="<?php echo $nickname ?>"
-                               required/>
-                        <input placeholder="邮箱" name="email" type="email" class="comment-mail"
+                               required/></label>
+                        <label for="comment-email">邮箱<input id="comment-email" placeholder="你的邮箱" name="email" type="email" autocomplete="email" class="comment-mail"
                                value="<?php echo $email ?>"
-                               required/>
-                        <input placeholder="网址" name="url" type="url" class="comment-url"
+                               required/></label>
+                        <label for="comment-url">网址<input id="comment-url" placeholder="https://" name="url" type="url" autocomplete="url" class="comment-url"
                                value="<?php echo $webUrl ?>"
-                               required/>
+                               required/></label>
                     </div>
                 </div>
                 <div class="comment-form-footer">

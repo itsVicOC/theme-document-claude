@@ -2,6 +2,11 @@
   暗黑模式变量 — claude.com/blog 暖深底风格
 */
 .dark {
+  --theme-color: #E6A17A;
+  --theme-color-20: rgba(230, 161, 122, 0.2);
+  --theme-on-accent: #1A1815;
+  --theme-code-bg: #353128;
+  --theme-code-text: #C3D3E3;
   --theme-text-color: rgba(245, 242, 234, 0.92);
   --theme-black-text: #F5F2EA;
   --theme-bg-color: #1A1815;
@@ -13,10 +18,10 @@
   --theme-header-font-color: #F5F2EA;
   --theme-sub-menu-bg-color: #252320;
   --theme-sub-menu-font-color: #F5F2EA;
-  --theme-header-border-color: transparent;
+  --theme-header-border-color: #484238;
   --theme-header-shadow-color: transparent;
   --theme-header-color: #1A1815;
-  --theme-header-border: #1A1815;
+  --theme-header-border: #484238;
 
   /*
     页脚
@@ -26,7 +31,7 @@
 
   --theme-text-secondary: rgba(245, 242, 234, 0.7);
   --theme-text-mini-color: rgba(245, 242, 234, 0.55);
-  --theme-placeholder: #6B6862;
+  --theme-placeholder: #BDB5A8;
 
   --theme-hover-bg: #F5F2EA;
   --theme-hover-color: #1A1815;

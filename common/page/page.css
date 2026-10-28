@@ -1,74 +1,80 @@
-html body .index {
-  margin-top: calc(60px + 1rem); }
-  html body .index .main-main {
-    width: 75%; }
-    html body .index .main-main .main-content {
-      width: 100%;
-      padding: 1.5rem 2.4rem; }
-      html body .index .main-main .main-content .list {
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;
-        padding: 0;
-        padding-left: 0.3rem;
-        justify-content: space-between; }
-        html body .index .main-main .main-content .list li {
-          width: 49%;
-          padding: 0.6rem 1.2rem;
-          color: var(--theme-text-color);
-          margin: 0 0.15rem; }
-          html body .index .main-main .main-content .list li:hover {
-            background-color: var(--theme-color);
-            border-radius: 8px;
-            color: white; }
-            html body .index .main-main .main-content .list li:hover * {
-              color: var(--theme-hover-color); }
-            html body .index .main-main .main-content .list li:hover .excerpt {
-              color: var(--theme-hover-color) !important; }
-          html body .index .main-main .main-content .list li a {
-            text-decoration: none;
-            display: flex;
-            justify-content: flex-start;
-            width: 100%;
-            margin: 0;
-            padding: 0; }
-            html body .index .main-main .main-content .list li a .datetime {
-              white-space: nowrap;
-              font-size: var(--theme-third-level-title);
-              height: fit-content;
-              margin-top: 0.05rem; }
-            html body .index .main-main .main-content .list li a .info {
-              width: 100%;
-              display: flex;
-              margin-left: 0.8rem;
-              flex-direction: column;
-              overflow: hidden; }
-              html body .index .main-main .main-content .list li a .info .title, html body .index .main-main .main-content .list li a .info .excerpt {
-                width: 100%;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis; }
-              html body .index .main-main .main-content .list li a .info .title {
-                font-size: 1rem;
-                font-weight: 500;
-                color: inherit; }
-              html body .index .main-main .main-content .list li a .info .excerpt {
-                margin-top: 0.3rem;
-                font-size: 0.80rem;
-                color: var(--theme-text-secondary); }
+/* Article archive, scoped to its page template so ordinary lists are unaffected. */
+html body .main-container.archive-page .main-main {
+  max-width: 1120px;
+}
+html body .main-container.archive-page .main-main .main-content {
+  padding: 24px;
+  border: 1px solid var(--theme-header-border);
+  background: var(--theme-front-main-color);
+}
+html body .main-container.archive-page .main-main .main-content .list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+html body .main-container.archive-page .main-main .main-content .list li {
+  min-width: 0;
+  margin: 0;
+  border-bottom: 1px solid var(--theme-header-border);
+}
+html body .main-container.archive-page .main-main .main-content .list a {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 8px;
+  color: var(--theme-text-color);
+  text-decoration: none;
+}
+html body .main-container.archive-page .main-main .main-content .list .datetime {
+  flex: 0 0 auto;
+  color: var(--theme-text-secondary);
+  font-size: 13px;
+  line-height: 1.8;
+}
+html body .main-container.archive-page .main-main .main-content .list .info {
+  flex: 1 1 0;
+  min-width: 0;
+}
+html body .main-container.archive-page .main-main .main-content .list .title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+html body .main-container.archive-page .main-main .main-content .list .excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--theme-text-secondary);
+}
+html body .main-container.archive-page .main-main .main-content .list a:hover .title {
+  color: var(--theme-color);
+}
 
-@media (max-width: 1024px) {
-  html body .index .main-main .main-content {
-    padding: 1.5rem 0.5rem; }
-    html body .index .main-main .main-content .list {
-      padding: 0; }
-      html body .index .main-main .main-content .list li {
-        width: 100%; } }
-
-@media (max-width: 480px) {
-  html body .index {
-    margin-top: calc(55px + 1rem); }
-    html body .index .main-main {
-      width: 96.5%; }
-      html body .index .main-main .main-content {
-        padding: 0.2rem 0 !important; } }
+@media (max-width: 1023px) {
+  html body .main-container.archive-page .main-main .main-content .list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  html body .main-container.archive-page .main-main .main-content {
+    padding: 8px 16px;
+  }
+  html body .main-container.archive-page .main-main .main-content .list a {
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 0;
+  }
+  html body .main-container.archive-page .main-main .main-content .list .excerpt {
+    display: none;
+  }
+}

@@ -4,11 +4,12 @@
  * */
 ?>
 <!--  搜索图标  -->
-<div class="menu-left">
+<form class="menu-left" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
     <div class="search-div">
         <!--  搜索图标  -->
-        <div class="search-icon iconfont icon-sousuo"></div>
+        <button type="submit" class="search-icon iconfont icon-sousuo" aria-label="搜索"></button>
         <!--  搜索框  -->
-        <input id="search" class="search" type="text" placeholder="输入关键词回车搜索"/>
+        <label class="screen-reader-text" for="search">搜索文章</label>
+        <input id="search" name="s" class="search" type="search" placeholder="搜索文章…" value="<?php echo esc_attr( get_search_query() ); ?>"/>
     </div>
-</div>
+</form>
